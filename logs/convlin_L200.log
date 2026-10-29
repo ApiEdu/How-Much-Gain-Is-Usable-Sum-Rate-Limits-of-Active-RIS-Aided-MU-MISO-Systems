@@ -1,0 +1,14 @@
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv.m shadows a core library function
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv2.m shadows a built-in function
+CONVLIN 200 1 -5 it 50  J(model, best so far) 18.208  simrate 18.026  (total 408s)
+CONVLIN 200 1 -5 it 100  J(model, best so far) 18.758  simrate 18.546  (total 408s)
+CONVLIN 200 1 -5 it 150  J(model, best so far) 19.005  simrate 18.782  (total 408s)
+CONVLIN 200 1 5 it 50  J(model, best so far) 22.357  simrate 21.679  (total 284s)
+CONVLIN 200 1 5 it 100  J(model, best so far) 22.941  simrate 22.191  (total 284s)
+CONVLIN 200 1 5 it 150  J(model, best so far) 23.225  simrate 22.431  (total 284s)
+CONVLIN 200 2 -5 it 50  J(model, best so far) 17.821  simrate 17.905  (total 285s)
+CONVLIN 200 2 -5 it 100  J(model, best so far) 18.381  simrate 18.437  (total 285s)
+CONVLIN 200 2 -5 it 150  J(model, best so far) 18.609  simrate 18.643  (total 285s)
+CONVLIN 200 2 5 it 50  J(model, best so far) 21.818  simrate 21.815  (total 282s)
+CONVLIN 200 2 5 it 100  J(model, best so far) 22.568  simrate 22.464  (total 282s)
+CONVLIN 200 2 5 it 150  J(model, best so far) 22.736  simrate 22.582  (total 282s)

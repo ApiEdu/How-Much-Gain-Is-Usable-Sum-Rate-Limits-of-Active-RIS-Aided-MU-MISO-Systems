@@ -1,0 +1,5 @@
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv.m shadows a core library function
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv2.m shadows a built-in function
+GRID 100 1 unaware 12.363 aware60 12.292 aware480 12.336  p: unaware 58.663 aware60 57.904 aware480 58.369
+GRID 100 2 unaware 13.033 aware60 12.840 aware480 12.989  p: unaware 59.989 aware60 57.904 aware480 59.502
+GRID 100 3 unaware 15.725 aware60 15.479 aware480 15.679  p: unaware 60.588 aware60 57.904 aware480 60.077

@@ -1,0 +1,10 @@
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv.m shadows a core library function
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv2.m shadows a built-in function
+CSIG 200 1 -10 0 unaware 150 8.732
+CSIG 200 1 -10 0 linreg 150 15.403
+CSIG 200 2 -10 0 unaware 150 9.012
+CSIG 200 2 -10 0 linreg 150 14.455
+CSIG 200 3 -10 0 unaware 150 8.376
+CSIG 200 3 -10 0 linreg 150 16.809
+CSIG 200 4 -10 0 unaware 150 9.257
+CSIG 200 4 -10 0 linreg 150 17.411

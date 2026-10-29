@@ -1,0 +1,16 @@
+L=100 draw=1 beta=-5 dB | Grad-linregion 11.79  Grad-unaware 7.22
+L=100 draw=1 beta=+0 dB | Grad-linregion 14.76  Grad-unaware 9.13
+L=100 draw=1 beta=+5 dB | Grad-linregion 17.59  Grad-unaware 12.64
+L=100 draw=1 beta=+10 dB | Grad-linregion 19.90  Grad-unaware 17.95
+L=100 draw=2 beta=-5 dB | Grad-linregion 12.17  Grad-unaware 7.19
+L=100 draw=2 beta=+0 dB | Grad-linregion 15.23  Grad-unaware 9.17
+L=100 draw=2 beta=+5 dB | Grad-linregion 17.78  Grad-unaware 12.62
+L=100 draw=2 beta=+10 dB | Grad-linregion 19.93  Grad-unaware 17.55
+L=100 draw=3 beta=-5 dB | Grad-linregion 12.34  Grad-unaware 7.18
+L=100 draw=3 beta=+0 dB | Grad-linregion 15.42  Grad-unaware 9.21
+L=100 draw=3 beta=+5 dB | Grad-linregion 18.03  Grad-unaware 12.85
+L=100 draw=3 beta=+10 dB | Grad-linregion 20.04  Grad-unaware 18.12
+L=100 draw=4 beta=-5 dB | Grad-linregion 11.94  Grad-unaware 7.29
+L=100 draw=4 beta=+0 dB | Grad-linregion 14.97  Grad-unaware 9.20
+L=100 draw=4 beta=+5 dB | Grad-linregion 17.55  Grad-unaware 12.62
+L=100 draw=4 beta=+10 dB | Grad-linregion 19.69  Grad-unaware 17.76

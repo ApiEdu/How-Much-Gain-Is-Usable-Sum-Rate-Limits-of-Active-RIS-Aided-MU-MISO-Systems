@@ -1,0 +1,7 @@
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv.m shadows a core library function
+L=100 draw=13 beta=-5 | aware 12.69 linreg 11.63 aware2 13.25 unaware 7.05
+L=100 draw=13 beta=+0 | aware 14.90 linreg 14.68 aware2 15.40 unaware 8.95
+L=100 draw=13 beta=+5 | aware 17.15 linreg 17.28 aware2 17.66 unaware 12.35
+L=100 draw=14 beta=-5 | aware 13.10 linreg 11.95 aware2 13.65 unaware 7.23
+L=100 draw=14 beta=+0 | aware 15.18 linreg 15.14 aware2 15.88 unaware 9.24
+L=100 draw=14 beta=+5 | aware 17.41 linreg 17.70 aware2 18.05 unaware 12.91

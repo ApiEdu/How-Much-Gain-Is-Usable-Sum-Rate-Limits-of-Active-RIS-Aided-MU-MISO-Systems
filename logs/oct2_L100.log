@@ -1,0 +1,45 @@
+L=100 run=1 GA1  R=13.2984  PBS=9.527  PRIS=1.000e-01 mW (100.0118% of budget)  p: min 3.312 mean 53.238 max 152.426  t=4s
+L=100 run=1 GA2  R=13.6703  PBS=7.154  PRIS=9.577e-02 mW (95.7731% of budget)  p: min 7.587 mean 67.039 max 194.124  t=4s
+    Starting GA optimization without RIS...
+    Generation 10/100: Best Fitness = 0.0086, R_sum = 0.0086
+    Generation 20/100: Best Fitness = 0.0091, R_sum = 0.0091
+    Generation 30/100: Best Fitness = 0.0097, R_sum = 0.0097
+    Generation 40/100: Best Fitness = 0.0100, R_sum = 0.0100
+    Generation 50/100: Best Fitness = 0.0102, R_sum = 0.0102
+    Generation 60/100: Best Fitness = 0.0103, R_sum = 0.0103
+    Generation 70/100: Best Fitness = 0.0104, R_sum = 0.0104
+    Generation 80/100: Best Fitness = 0.0105, R_sum = 0.0105
+    Generation 90/100: Best Fitness = 0.0106, R_sum = 0.0106
+    Generation 100/100: Best Fitness = 0.0106, R_sum = 0.0106
+    Final: Best Fitness = 0.0106, R_sum = 0.0106
+L=100 run=1 FP    R=1.4870  PRIS=2.879e-03 mW | noRIS R=0.0106
+L=100 run=2 GA1  R=14.0437  PBS=8.997  PRIS=9.814e-02 mW (98.1397% of budget)  p: min 7.116 mean 54.614 max 267.996  t=4s
+L=100 run=2 GA2  R=15.1166  PBS=5.548  PRIS=1.000e-01 mW (100.0000% of budget)  p: min 15.144 mean 77.935 max 208.760  t=4s
+    Starting GA optimization without RIS...
+    Generation 10/100: Best Fitness = 0.0097, R_sum = 0.0097
+    Generation 20/100: Best Fitness = 0.0115, R_sum = 0.0115
+    Generation 30/100: Best Fitness = 0.0129, R_sum = 0.0129
+    Generation 40/100: Best Fitness = 0.0142, R_sum = 0.0142
+    Generation 50/100: Best Fitness = 0.0151, R_sum = 0.0151
+    Generation 60/100: Best Fitness = 0.0160, R_sum = 0.0160
+    Generation 70/100: Best Fitness = 0.0164, R_sum = 0.0164
+    Generation 80/100: Best Fitness = 0.0167, R_sum = 0.0167
+    Generation 90/100: Best Fitness = 0.0170, R_sum = 0.0170
+    Generation 100/100: Best Fitness = 0.0172, R_sum = 0.0172
+    Final: Best Fitness = 0.0172, R_sum = 0.0172
+L=100 run=2 FP    R=1.4574  PRIS=2.544e-03 mW | noRIS R=0.0172
+L=100 run=3 GA1  R=13.8617  PBS=9.674  PRIS=9.893e-02 mW (98.9312% of budget)  p: min 3.030 mean 49.426 max 167.381  t=4s
+L=100 run=3 GA2  R=13.8717  PBS=6.283  PRIS=9.778e-02 mW (97.7779% of budget)  p: min 17.547 mean 63.052 max 191.948  t=4s
+    Starting GA optimization without RIS...
+    Generation 10/100: Best Fitness = 0.0268, R_sum = 0.0268
+    Generation 20/100: Best Fitness = 0.0336, R_sum = 0.0336
+    Generation 30/100: Best Fitness = 0.0360, R_sum = 0.0360
+    Generation 40/100: Best Fitness = 0.0395, R_sum = 0.0395
+    Generation 50/100: Best Fitness = 0.0413, R_sum = 0.0413
+    Generation 60/100: Best Fitness = 0.0447, R_sum = 0.0447
+    Generation 70/100: Best Fitness = 0.0452, R_sum = 0.0452
+    Generation 80/100: Best Fitness = 0.0461, R_sum = 0.0461
+    Generation 90/100: Best Fitness = 0.0465, R_sum = 0.0465
+    Generation 100/100: Best Fitness = 0.0469, R_sum = 0.0469
+    Final: Best Fitness = 0.0469, R_sum = 0.0469
+L=100 run=3 FP    R=1.5581  PRIS=2.873e-03 mW | noRIS R=0.0469

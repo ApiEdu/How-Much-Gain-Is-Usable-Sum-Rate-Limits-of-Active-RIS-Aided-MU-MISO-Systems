@@ -1,0 +1,19 @@
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv.m shadows a core library function
+L=100 draw=1 beta=-5 | aware 15.67 linreg 12.27 aware2 16.14 unaware 11.22
+L=100 draw=1 beta=+0 | aware 19.12 linreg 16.80 aware2 19.47 unaware 14.40
+L=100 draw=1 beta=+5 | aware 22.42 linreg 21.64 aware2 22.94 unaware 19.79
+L=100 draw=2 beta=-5 | aware 15.54 linreg 12.43 aware2 16.49 unaware 10.93
+L=100 draw=2 beta=+0 | aware 18.69 linreg 16.89 aware2 19.71 unaware 13.91
+L=100 draw=2 beta=+5 | aware 22.07 linreg 21.12 aware2 22.89 unaware 18.81
+L=100 draw=3 beta=-5 | aware 15.73 linreg 12.14 aware2 16.10 unaware 11.12
+L=100 draw=3 beta=+0 | aware 19.08 linreg 16.81 aware2 19.56 unaware 14.33
+L=100 draw=3 beta=+5 | aware 22.28 linreg 21.40 aware2 22.87 unaware 19.77
+L=100 draw=4 beta=-5 | aware 16.12 linreg 12.77 aware2 16.75 unaware 11.49
+L=100 draw=4 beta=+0 | aware 19.51 linreg 17.34 aware2 20.15 unaware 14.60
+L=100 draw=4 beta=+5 | aware 22.79 linreg 21.90 aware2 23.38 unaware 19.86
+L=100 draw=5 beta=-5 | aware 15.95 linreg 12.67 aware2 16.38 unaware 11.16
+L=100 draw=5 beta=+0 | aware 19.16 linreg 17.30 aware2 19.74 unaware 14.24
+L=100 draw=5 beta=+5 | aware 22.16 linreg 21.63 aware2 23.01 unaware 19.43
+L=100 draw=6 beta=-5 | aware 15.76 linreg 12.35 aware2 16.38 unaware 11.03
+L=100 draw=6 beta=+0 | aware 19.10 linreg 17.07 aware2 19.73 unaware 14.15
+L=100 draw=6 beta=+5 | aware 21.51 linreg 21.64 aware2 23.21 unaware 19.40

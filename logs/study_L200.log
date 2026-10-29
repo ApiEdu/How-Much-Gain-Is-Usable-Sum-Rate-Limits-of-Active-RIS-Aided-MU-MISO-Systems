@@ -1,0 +1,20 @@
+L=200 draw=1 GA-unaware designed (2s), linear-model rate 5.43
+L=200 draw=1 beta=-5 dB | CF-unaware 6.17  CF-aware 9.45  GA-unaware 7.04  GA-linregion 12.43  GA-aware 9.85  Grad-aware 17.79  | budget% max 21 | t(GA-lin 32s GA-aw 33s grad 99s)
+L=200 draw=1 beta=+0 dB | CF-unaware 7.97  CF-aware 11.50  GA-unaware 9.67  GA-linregion 13.58  GA-aware 12.63  Grad-aware 19.66  | budget% max 44 | t(GA-lin 33s GA-aw 31s grad 98s)
+L=200 draw=1 beta=+5 dB | CF-unaware 10.68  CF-aware 13.51  GA-unaware 12.84  GA-linregion 14.29  GA-aware 14.21  Grad-aware 19.61  | budget% max 73 | t(GA-lin 32s GA-aw 31s grad 95s)
+L=200 draw=1 beta=+10 dB | CF-unaware 14.71  CF-aware 15.45  GA-unaware 15.11  GA-linregion 16.53  GA-aware 14.83  Grad-aware 21.68  | budget% max 92 | t(GA-lin 31s GA-aw 31s grad 96s)
+L=200 draw=2 GA-unaware designed (3s), linear-model rate 9.90
+L=200 draw=2 beta=-5 dB | CF-unaware 6.21  CF-aware 10.73  GA-unaware 6.10  GA-linregion 11.24  GA-aware 10.90  Grad-aware 17.89  | budget% max 21 | t(GA-lin 32s GA-aw 32s grad 99s)
+L=200 draw=2 beta=+0 dB | CF-unaware 8.36  CF-aware 12.81  GA-unaware 7.64  GA-linregion 13.33  GA-aware 13.17  Grad-aware 19.99  | budget% max 44 | t(GA-lin 30s GA-aw 34s grad 108s)
+L=200 draw=2 beta=+5 dB | CF-unaware 11.33  CF-aware 14.90  GA-unaware 10.05  GA-linregion 14.68  GA-aware 13.66  Grad-aware 17.93  | budget% max 72 | t(GA-lin 36s GA-aw 34s grad 100s)
+L=200 draw=2 beta=+10 dB | CF-unaware 15.22  CF-aware 16.91  GA-unaware 14.17  GA-linregion 15.22  GA-aware 15.42  Grad-aware 23.49  | budget% max 91 | t(GA-lin 32s GA-aw 31s grad 98s)
+L=200 draw=3 GA-unaware designed (3s), linear-model rate 9.61
+L=200 draw=3 beta=-5 dB | CF-unaware 5.63  CF-aware 10.45  GA-unaware 5.49  GA-linregion 11.09  GA-aware 10.72  Grad-aware 17.61  | budget% max 21 | t(GA-lin 33s GA-aw 31s grad 100s)
+L=200 draw=3 beta=+0 dB | CF-unaware 7.28  CF-aware 12.75  GA-unaware 7.86  GA-linregion 13.49  GA-aware 11.57  Grad-aware 18.68  | budget% max 44 | t(GA-lin 32s GA-aw 30s grad 96s)
+L=200 draw=3 beta=+5 dB | CF-unaware 10.32  CF-aware 15.01  GA-unaware 11.07  GA-linregion 15.06  GA-aware 13.26  Grad-aware 17.97  | budget% max 72 | t(GA-lin 32s GA-aw 30s grad 101s)
+L=200 draw=3 beta=+10 dB | CF-unaware 15.22  CF-aware 17.16  GA-unaware 14.25  GA-linregion 16.05  GA-aware 14.60  Grad-aware 18.00  | budget% max 92 | t(GA-lin 32s GA-aw 31s grad 98s)
+L=200 draw=4 GA-unaware designed (2s), linear-model rate 7.08
+L=200 draw=4 beta=-5 dB | CF-unaware 5.84  CF-aware 9.78  GA-unaware 6.58  GA-linregion 12.40  GA-aware 10.23  Grad-aware 18.08  | budget% max 21 | t(GA-lin 32s GA-aw 32s grad 97s)
+L=200 draw=4 beta=+0 dB | CF-unaware 7.66  CF-aware 11.89  GA-unaware 8.25  GA-linregion 13.57  GA-aware 11.91  Grad-aware 19.34  | budget% max 44 | t(GA-lin 32s GA-aw 30s grad 99s)
+L=200 draw=4 beta=+5 dB | CF-unaware 10.68  CF-aware 14.08  GA-unaware 10.64  GA-linregion 14.64  GA-aware 14.49  Grad-aware 21.73  | budget% max 72 | t(GA-lin 31s GA-aw 32s grad 100s)
+L=200 draw=4 beta=+10 dB | CF-unaware 15.15  CF-aware 16.16  GA-unaware 13.64  GA-linregion 14.84  GA-aware 14.38  Grad-aware 15.35  | budget% max 92 | t(GA-lin 30s GA-aw 31s grad 100s)

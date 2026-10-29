@@ -1,0 +1,9 @@
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv.m shadows a core library function
+L=200 draw=12 beta=-5 | aware 17.79 linreg 18.02 aware2 18.36 unaware 6.63
+L=200 draw=12 beta=+0 | aware 19.14 linreg 20.22 aware2 20.49 unaware 7.99
+L=200 draw=12 beta=+5 | aware 20.06 linreg 21.87 aware2 20.91 unaware 9.60
+L=200 draw=13 beta=-5 | aware 17.94 linreg 18.21 aware2 18.41 unaware 6.54
+L=200 draw=13 beta=+0 | aware 19.86 linreg 20.17 aware2 20.45 unaware 7.99
+fatal: caught signal Terminated -- stopping myself...
+attempting to save variables to 'octave-workspace'...
+save to 'octave-workspace' complete

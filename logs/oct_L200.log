@@ -1,0 +1,9 @@
+L=200 run=1 GA1  R=1.6248  PBS=9.818  PRIS=1.205e-05 mW (0.0120% of budget)  p: min 0.012 mean 0.567 max 1.152  t=6s
+L=200 run=1 GA2  R=1.4529  PBS=9.845  PRIS=1.001e-05 mW (0.0100% of budget)  p: min 0.023 mean 0.513 max 1.163  t=5s
+L=200 run=1 FP    R=1.8590  PRIS=2.615e-03 mW | noRIS R=0.0009
+L=200 run=2 GA1  R=1.7231  PBS=9.832  PRIS=1.060e-05 mW (0.0106% of budget)  p: min 0.050 mean 0.540 max 1.204  t=5s
+L=200 run=2 GA2  R=1.4893  PBS=9.824  PRIS=1.061e-05 mW (0.0106% of budget)  p: min 0.020 mean 0.547 max 1.431  t=6s
+L=200 run=2 FP    R=1.1170  PRIS=6.575e-03 mW | noRIS R=0.0011
+L=200 run=3 GA1  R=1.8903  PBS=9.878  PRIS=1.123e-05 mW (0.0112% of budget)  p: min 0.048 mean 0.548 max 1.033  t=5s
+L=200 run=3 GA2  R=1.3972  PBS=9.846  PRIS=9.141e-06 mW (0.0091% of budget)  p: min 0.034 mean 0.516 max 1.053  t=6s
+L=200 run=3 FP    R=2.5523  PRIS=2.136e-03 mW | noRIS R=0.0016

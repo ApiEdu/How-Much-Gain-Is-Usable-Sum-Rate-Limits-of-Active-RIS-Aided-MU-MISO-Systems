@@ -1,0 +1,6 @@
+200 1 -5 linear-model rate start 16.128 best 19.674 last 19.674  time 390s
+200 1 0 linear-model rate start 17.031 best 21.890 last 21.890  time 389s
+200 1 5 linear-model rate start 20.368 best 23.407 last 23.407  time 438s
+200 2 -5 linear-model rate start 13.963 best 19.676 last 19.676  time 409s
+200 2 0 linear-model rate start 15.563 best 21.771 last 21.771  time 435s
+200 2 5 linear-model rate start 17.893 best 23.136 last 23.136  time 446s

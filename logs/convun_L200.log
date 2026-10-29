@@ -1,0 +1,14 @@
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv.m shadows a core library function
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv2.m shadows a built-in function
+CONVUN 200 1 -5 it 50 simrate 6.073 (20s)
+CONVUN 200 1 5 it 50 simrate 9.451 (20s)
+CONVUN 200 1 -5 it 100 simrate 7.050 (20s)
+CONVUN 200 1 5 it 100 simrate 12.233 (20s)
+CONVUN 200 1 -5 it 150 simrate 7.050 (20s)
+CONVUN 200 1 5 it 150 simrate 12.233 (20s)
+CONVUN 200 2 -5 it 50 simrate 6.877 (22s)
+CONVUN 200 2 5 it 50 simrate 12.204 (22s)
+CONVUN 200 2 -5 it 100 simrate 6.877 (22s)
+CONVUN 200 2 5 it 100 simrate 12.204 (22s)
+CONVUN 200 2 -5 it 150 simrate 7.458 (22s)
+CONVUN 200 2 5 it 150 simrate 12.354 (22s)

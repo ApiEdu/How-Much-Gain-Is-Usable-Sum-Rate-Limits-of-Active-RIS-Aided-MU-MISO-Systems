@@ -1,0 +1,26 @@
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv.m shadows a core library function
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv2.m shadows a built-in function
+CONV 200 1 -5 start(CF-aware) simrate 9.449
+CONV 200 1 -5 it 10  J(model, best so far) 14.358  simrate 13.668  (total 272s)
+CONV 200 1 -5 it 20  J(model, best so far) 16.487  simrate 16.101  (total 272s)
+CONV 200 1 -5 it 50  J(model, best so far) 18.317  simrate 17.794  (total 272s)
+CONV 200 1 -5 it 100  J(model, best so far) 18.891  simrate 18.353  (total 272s)
+CONV 200 1 -5 it 150  J(model, best so far) 19.101  simrate 18.537  (total 272s)
+CONV 200 1 5 start(CF-aware) simrate 13.509
+CONV 200 1 5 it 10  J(model, best so far) 12.522  simrate 11.615  (total 275s)
+CONV 200 1 5 it 20  J(model, best so far) 15.463  simrate 14.617  (total 275s)
+CONV 200 1 5 it 50  J(model, best so far) 20.134  simrate 19.612  (total 275s)
+CONV 200 1 5 it 100  J(model, best so far) 22.987  simrate 22.267  (total 275s)
+CONV 200 1 5 it 150  J(model, best so far) 23.307  simrate 22.553  (total 275s)
+CONV 200 2 -5 start(CF-aware) simrate 10.728
+CONV 200 2 -5 it 10  J(model, best so far) 13.864  simrate 14.083  (total 278s)
+CONV 200 2 -5 it 20  J(model, best so far) 16.245  simrate 16.276  (total 278s)
+CONV 200 2 -5 it 50  J(model, best so far) 17.949  simrate 17.888  (total 278s)
+CONV 200 2 -5 it 100  J(model, best so far) 18.470  simrate 18.377  (total 278s)
+CONV 200 2 -5 it 150  J(model, best so far) 18.660  simrate 18.564  (total 278s)
+CONV 200 2 5 start(CF-aware) simrate 14.905
+CONV 200 2 5 it 10  J(model, best so far) 14.092  simrate 14.048  (total 345s)
+CONV 200 2 5 it 20  J(model, best so far) 14.405  simrate 14.200  (total 345s)
+CONV 200 2 5 it 50  J(model, best so far) 18.126  simrate 17.928  (total 345s)
+CONV 200 2 5 it 100  J(model, best so far) 22.358  simrate 21.911  (total 345s)
+CONV 200 2 5 it 150  J(model, best so far) 22.950  simrate 22.438  (total 345s)
