@@ -1,0 +1,70 @@
+# Created by Octave 8.4.0, Wed Oct 28 16:59:54 2026 EEST <root@vm>
+# name: R
+# type: matrix
+# ndims: 3
+ 3 3 4
+ 17.791833332570754
+ NaN
+ NaN
+ 19.142573563737351
+ NaN
+ NaN
+ 20.056354359364889
+ NaN
+ NaN
+ 18.023758298981981
+ NaN
+ NaN
+ 20.222995193699361
+ NaN
+ NaN
+ 21.871029781273371
+ NaN
+ NaN
+ 18.356167903301841
+ NaN
+ NaN
+ 20.490052668594263
+ NaN
+ NaN
+ 20.907010420351114
+ NaN
+ NaN
+ 6.6281258013565143
+ NaN
+ NaN
+ 7.9876472948207002
+ NaN
+ NaN
+ 9.5976501015360416
+ NaN
+ NaN
+
+
+# name: bdb
+# type: matrix
+# rows: 1
+# columns: 3
+ -5 0 5
+
+
+# name: L
+# type: scalar
+200
+
+
+# name: D0
+# type: scalar
+11
+
+
+# name: D1
+# type: scalar
+14
+
+
+# name: dd
+# type: scalar
+1
+
+
