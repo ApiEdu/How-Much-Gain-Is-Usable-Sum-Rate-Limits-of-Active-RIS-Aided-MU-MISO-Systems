@@ -1,0 +1,8 @@
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv.m shadows a core library function
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv2.m shadows a built-in function
+RHO 100 1 0 0.100 30 150 15.128
+PST 100 1 0 rho0.100 150 20.53 30.00 0.160
+RHO 100 2 0 0.100 30 150 15.401
+PST 100 2 0 rho0.100 150 20.76 30.00 0.219
+RHO 100 3 0 0.100 30 150 15.437
+PST 100 3 0 rho0.100 150 20.82 30.00 0.180

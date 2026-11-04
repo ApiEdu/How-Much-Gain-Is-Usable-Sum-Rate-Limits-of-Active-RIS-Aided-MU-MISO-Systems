@@ -12,7 +12,8 @@ The scripts use relative paths (`ch/`, `v6/`): run them from the repository root
 
 ## Requirements
 GNU Octave 8.4.0 (or MATLAB); Python 3 with numpy, scipy, matplotlib and cvxpy (Clarabel solver).
-The analysis scripts contain an absolute path in the variable `S` (the build container); set it to your own directory before running them.
+The older analysis scripts (`analyze_conv.py`, `analyze_nk.py`, `analyze_val.py`, `make_*.py`) still contain an absolute path in the variable `S` (the build container); set it to your own directory before running them.
+The scripts added on 4 November 2026 (listed below) and `logs/analyze_main150.py` find the logs from their own location, so they run from any directory. In `analyze_main150.py` this was the only change: the paths of the logs and of `v6/res_fp6k_L*.mat` are now derived from the file location; the numbers it prints are unchanged.
 
 ## Which log produces which result (table/figure numbers of the MDPI version)
 | Result | Logs / scripts |
@@ -26,6 +27,30 @@ The analysis scripts contain an absolute path in the variable `S` (the build con
 | Table 13 (genetic algorithm) | `study_L*.log` |
 | Figure 2 (beta up to +30 dB) | `hbcf_L*.log`, `hbg_L*.log`, `analyze_hibeta.py`, `make_fig_hibeta_mdpi.py` |
 | Grid check at beta = +30 dB | `gridtest.log` |
+
+## Added on 4 November 2026: release-the-cap test, parameter sweeps, equal-budget draws 5-10, user separation
+These files support the sections added to the revised manuscript (section titles are given because the table numbers differ between the journal templates).
+
+New Octave code (repository root; run from the repository root, `octave-cli --no-gui <file>.m`, settings are read from environment variables):
+- `grad_design_w.m` : the same Adam / finite-difference optimiser as `grad_design_h.m`, but the starting design is itself a candidate, so a run can be continued from an earlier design (used by the release-the-cap test).
+- `run_warm.m` : release-the-cap test. A capped design is optimised for `CITERS` iterations; two continuations of `XITERS` iterations follow from that design, one with the gain cap kept and one with it released (compression-aware). Environment: `LV` (100 or 200), `CITERS=50`, `XITERS=100`, `DRAWS` (for example `1:4`), `BETAS` (for example `"-5 0 5"`). It prints `WARM` (symbol-level sum-rate), `PST` (gain statistics) and `DJ` (design-time objective).
+- `run_rho.m` : sensitivity of the capped design to `rho_max` (environment `RHOS`) and to `p_max` (environment `PMAX`); `LV`, `GITERS=150`, `DRAWS`, `BETAS`.
+- `run_main150x.m` : the equal-budget run of `run_main150.m` for further draws (`DRAWS=5:7`, `GITERS=150`, `LV`).
+- `run_sep.m` : user-separation test (second user at (L, -SEP, 0); `SEP=30`, `GITERS=50`, `DRAWS=1:6`, `LV`). Its header comment is inherited from `run_main150x.m`.
+- `run_all.sh L` (the commands are those that produced the logs; only the paths were changed to the repository layout): runs the release test and then the `rho_max` / `p_max` sweeps for one distance. The first run was stopped by a time limit of the compute environment after most of the sweeps; `run_rest.sh L` ran what was missing (`rho_max` = 1 for draw 3, `p_max` = 30 and 300).
+- `GITERS`, `CITERS` and `XITERS` should be multiples of 10 (and `XITERS` a multiple of 20): the optimiser stores the design every 10 iterations and the scripts score the designs at `XITERS/2` and `XITERS`.
+
+New analysis scripts (`logs/`): `analyze_warm.py`, `analyze_dj.py`, `stats_release.py`, `stats_rho.py` (release test and sweeps), `gen_tables_new.py` (writes the table rows `new_tab_release_rows.tex`, `new_tab_rho_rows.tex` and `new_numbers.json`), `verify_new_claims.py` (recomputes every number quoted in the new sections from the logs and checks it against the rounded value in the text; prints `ALL CLAIMS VERIFIED`), `stats10.py` and `analyze14.py` (equal-budget statistics over draws 1-10; `analyze14.py` is written for up to 14 draws, but 150-iteration logs exist only for draws 1-10, so it reports n = 10). Run them from anywhere, for example `python3 logs/verify_new_claims.py`.
+
+| Result (section of the revised manuscript) | Logs / scripts |
+|---|---|
+| Equal-budget comparison, draws 1 to 10 (150 iterations) | draws 1-4: `main150_L*.log`; draws 5-10: `ext150_L*_d5-7.log`, `ext150_L*_d8-10.log`; `stats10.py`, `analyze14.py` |
+| Releasing the cap from a common start | `warm_L*.log` (24 designs per distance: 4 draws x 3 beta x 2 continuations), `analyze_warm.py`, `analyze_dj.py`, `stats_release.py`, `gen_tables_new.py` |
+| Sensitivity to the cap parameters (`rho_max`, `p_max`) | `rho_L*.log`, `rho_L*_b.log`, `pmax30_L*.log`, `pmax300_L*.log` (beta = 0 dB, draws 1-3; the reference values `rho_max` = 0.1, `p_max` = 100 come from `main150_L*.log`), `stats_rho.py`, `gen_tables_new.py` |
+| Sensitivity to user separation (30 m) | `sep30_L*.log` (draws 1-6) |
+| Check of the quoted numbers | `verify_new_claims.py` |
+
+The logs begin with Octave warnings that `conv.m` and `conv2.m` of this repository shadow built-in functions; they do not affect the results.
 
 Wall-clock times quoted in the article were measured on a shared two-core container and are indicative only.
 

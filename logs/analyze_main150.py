@@ -1,5 +1,7 @@
 import re,collections,numpy as np,scipy.io as sio,sys
-S='/tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/'
+import os
+S=os.path.dirname(os.path.abspath(__file__))+'/'      # logs/ (this folder)
+ROOT=os.path.dirname(S.rstrip('/'))+'/'                # repository root (v6/res_fp6k_L*.mat)
 BT=(-5,0,5); LS=(100,200); DR=(1,2,3,4)
 G=collections.defaultdict(dict)       # (design,L,d,b) -> {it: rate}
 def put(des,L,d,b,it,r): G[(des,L,d,b)][it]=r
@@ -14,7 +16,7 @@ for L in LS:
         for ln in open(S+fn):
             m=re.match(tag+r' (\d+) (\d+) (-?\d+) it (\d+).*?simrate ([\d.]+)',ln)
             if m and int(m.group(4)) in (50,150): put(des,int(m.group(1)),int(m.group(2)),int(m.group(3)),int(m.group(4)),float(m.group(5)))
-fp={L:sio.loadmat(S+f'sim/v6/res_fp6k_L{L}.mat')['R'] for L in LS}
+fp={L:sio.loadmat(ROOT+f'v6/res_fp6k_L{L}.mat')['R'] for L in LS}
 inl={}
 try:
     for ln in open(S+'fpcap_scores.txt'):

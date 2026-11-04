@@ -1,0 +1,21 @@
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv.m shadows a core library function
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv2.m shadows a built-in function
+RHO 200 1 0 0.030 100 150 19.084
+PST 200 1 0 rho0.030 150 11.66 53.60 0.000
+RHO 200 1 0 0.300 100 150 18.723
+PST 200 1 0 rho0.300 150 23.80 92.45 0.000
+RHO 200 1 0 1.000 100 150 20.389
+PST 200 1 0 rho1.000 150 21.66 81.92 0.000
+RHO 200 2 0 0.030 100 150 19.082
+PST 200 2 0 rho0.030 150 11.59 36.46 0.000
+RHO 200 2 0 0.300 100 150 20.220
+PST 200 2 0 rho0.300 150 20.57 66.88 0.000
+RHO 200 2 0 1.000 100 150 20.754
+PST 200 2 0 rho1.000 150 19.93 61.93 0.000
+RHO 200 3 0 0.030 100 150 19.123
+PST 200 3 0 rho0.030 150 12.44 46.94 0.000
+RHO 200 3 0 0.300 100 150 19.549
+PST 200 3 0 rho0.300 150 20.61 74.08 0.000
+fatal: caught signal Terminated -- stopping myself...
+attempting to save variables to 'octave-workspace'...
+save to 'octave-workspace' complete
