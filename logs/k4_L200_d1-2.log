@@ -1,0 +1,8 @@
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv.m shadows a core library function
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv2.m shadows a built-in function
+L=200 draw=1 beta=-5 | aware 31.07 linreg 30.09 aware2 31.63 unaware 15.49
+L=200 draw=1 beta=+0 | aware 35.49 linreg 35.84 aware2 36.12 unaware 19.28
+L=200 draw=1 beta=+5 | aware 39.27 linreg 40.18 aware2 40.44 unaware 26.30
+L=200 draw=2 beta=-5 | aware 32.01 linreg 30.94 aware2 32.74 unaware 15.60
+L=200 draw=2 beta=+0 | aware 36.30 linreg 36.54 aware2 37.20 unaware 19.33
+L=200 draw=2 beta=+5 | aware 40.34 linreg 40.82 aware2 41.13 unaware 26.14

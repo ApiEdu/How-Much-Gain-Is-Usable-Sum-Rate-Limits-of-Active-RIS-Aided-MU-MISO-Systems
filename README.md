@@ -54,5 +54,12 @@ The logs begin with Octave warnings that `conv.m` and `conv2.m` of this reposito
 
 Wall-clock times quoted in the article were measured on a shared two-core container and are indicative only.
 
+## Added on 6 November 2026: four users (K = 4) at N = 256
+These files support the subsection "Four Users at N = 256" of the revised manuscript.
+
+- `run_nk.m` (already in the repository, unchanged) was run with `NN=256 KK=4 GITERS=150 BDB="-5 0 5"`, `LSET=100` or `200`, and `D0`/`D1` selecting the draws (`D0=0 D1=2` gives draws 1-2, `D0=2 D1=4` draws 3-4), `TAG=k4a` or `k4b`. The four users are at (L, 0, 0), (L+1, 0, 0), (L+2, 0, 0) and (L+3, 0, 0) m. Designs in the output: `aware` (compression-aware, 150 iterations from the closed-form start), `linreg` (capped, 150 iterations from the capped closed form), `aware2` (compression-aware, 150 further iterations started from the capped solution, 300 in total, so not an equal-budget comparison) and `unaware` (linear model, 150 iterations, projected onto the feasible set). Each draw takes about 40 minutes per distance on one core of a shared container (indicative).
+- Result files (Octave text format, repository root): `res_k4a_L100_N256_K4.mat`, `res_k4a_L200_N256_K4.mat`, `res_k4b_L100_N256_K4.mat`, `res_k4b_L200_N256_K4.mat`. Logs: `logs/k4_L100_d1-2.log`, `logs/k4_L200_d1-2.log`, `logs/k4_L100_d3-4.log`, `logs/k4_L200_d3-4.log` (the Octave warnings at the top are the harmless `conv.m` / `conv2.m` shadowing warnings).
+- Scripts (`logs/`): `analyze_k4.py` (mean +- standard error and paired differences per condition; reads the `.mat` files), `make_k4_tex.py` (prints the rows of the manuscript table), `verify_k4_claims.py` (recomputes every number quoted in the subsection and asserts it against the rounded value in the text; prints `all K=4 claims verified`). Run, for example, `python3 logs/verify_k4_claims.py`.
+
 ## Licence
 MIT License (see the file `LICENSE`).
