@@ -61,5 +61,12 @@ These files support the subsection "Four Users at N = 256" of the revised manusc
 - Result files (Octave text format, repository root): `res_k4a_L100_N256_K4.mat`, `res_k4a_L200_N256_K4.mat`, `res_k4b_L100_N256_K4.mat`, `res_k4b_L200_N256_K4.mat`. Logs: `logs/k4_L100_d1-2.log`, `logs/k4_L200_d1-2.log`, `logs/k4_L100_d3-4.log`, `logs/k4_L200_d3-4.log` (the Octave warnings at the top are the harmless `conv.m` / `conv2.m` shadowing warnings).
 - Scripts (`logs/`): `analyze_k4.py` (mean +- standard error and paired differences per condition; reads the `.mat` files), `make_k4_tex.py` (prints the rows of the manuscript table), `verify_k4_claims.py` (recomputes every number quoted in the subsection and asserts it against the rounded value in the text; prints `all K=4 claims verified`). Run, for example, `python3 logs/verify_k4_claims.py`.
 
+## Added on 6 November 2026: long-budget check (600 iterations)
+These files support the subsection on the long-budget check of the revised manuscript (K = 2, N = 256, no other change to the model).
+
+- `run_long.m` (repository root) runs the capped (`linreg`) and the compression-aware (`aware`) gradient design for 600 iterations, each from its own closed-form start as in `run_main150.m`, for one channel draw `DRAW` at distance `LV`, for the saturation ratios in `BETAS` (dB), and scores the iterate at the checkpoints in `CPS` (multiples of 10) by symbol-level simulation. Example: `LV=100 DRAW=1 GITERS=600 BETAS="-5 0" CPS="150 300 600" octave-cli --no-gui run_long.m > logs/long_L100_d1.log`. Output lines: `LONG <L> <draw> <beta_dB> <mode> <iteration> <symbol-level sum-rate> <design-time objective J>`. One run takes roughly an hour on one core of a shared container (indicative).
+- Logs: `logs/long_L100_d1.log`, `logs/long_L200_d1.log`, `logs/long_L100_d2.log`, `logs/long_L200_d2.log` (`d1`, `d2` = channel draw).
+- Script: `logs/analyze_long.py` prints, for every distance, draw and saturation ratio, the rates after 150, 300 and 600 iterations and the aware-minus-cap differences.
+
 ## Licence
 MIT License (see the file `LICENSE`).

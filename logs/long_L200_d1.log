@@ -1,0 +1,14 @@
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv.m shadows a core library function
+warning: function /tmp/claude-0/-home-claude/001c75b9-0bc8-5d1d-808e-ce0003cea96f/scratchpad/sim/conv2.m shadows a built-in function
+LONG 200 1 -5 aware 150 18.537 19.101
+LONG 200 1 -5 aware 300 18.755 19.339
+LONG 200 1 -5 aware 600 18.789 19.403
+LONG 200 1 -5 linreg 150 18.782 19.005
+LONG 200 1 -5 linreg 300 18.964 19.197
+LONG 200 1 -5 linreg 600 19.034 19.274
+LONG 200 1 0 aware 150 20.621 21.250
+LONG 200 1 0 aware 300 20.962 21.631
+LONG 200 1 0 aware 600 21.074 21.763
+LONG 200 1 0 linreg 150 20.857 21.327
+LONG 200 1 0 linreg 300 21.195 21.743
+LONG 200 1 0 linreg 600 21.281 21.862
