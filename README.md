@@ -66,7 +66,7 @@ These files support the subsection on the long-budget check of the revised manus
 
 - `run_long.m` (repository root) runs the capped (`linreg`) and the compression-aware (`aware`) gradient design for 600 iterations, each from its own closed-form start as in `run_main150.m`, for one channel draw `DRAW` at distance `LV`, for the saturation ratios in `BETAS` (dB), and scores the iterate at the checkpoints in `CPS` (multiples of 10) by symbol-level simulation. Example: `LV=100 DRAW=1 GITERS=600 BETAS="-5 0" CPS="150 300 600" octave-cli --no-gui run_long.m > logs/long_L100_d1.log`. Output lines: `LONG <L> <draw> <beta_dB> <mode> <iteration> <symbol-level sum-rate> <design-time objective J>`. One run takes roughly an hour on one core of a shared container (indicative).
 - Logs: `logs/long_L100_d1.log`, `logs/long_L200_d1.log`, `logs/long_L100_d2.log`, `logs/long_L200_d2.log` (`d1`, `d2` = channel draw).
-- Script: `logs/analyze_long.py` prints, for every distance, draw and saturation ratio, the rates after 150, 300 and 600 iterations and the aware-minus-cap differences.
+- Scripts (`logs/`): `analyze_long.py` prints, for every distance, draw and saturation ratio, the rates after 150, 300 and 600 iterations, the aware-minus-cap differences and the design-time objective J; `make_long_tex.py` prints the rows of the manuscript table; `verify_long_claims.py` recomputes every number quoted in the subsection (including that the 150-iteration checkpoints reproduce the earlier 150-iteration logs exactly) and prints `all long-budget claims verified`. Run, for example, `cd logs; python3 verify_long_claims.py` (without `-I`, because the scripts import each other).
 
 ## Licence
 MIT License (see the file `LICENSE`).

@@ -44,5 +44,42 @@ def main():
     return rows
 
 
+def summary(rows=None):
+    """Means over the available draws and counts used in the manuscript."""
+    if rows is None:
+        rows = main_quiet()
+    out = {}
+    for L in (100, 200):
+        for b in (-5, 0):
+            ds = sorted({d for (l, d, bb, it) in rows if l == L and bb == b})
+            if not ds:
+                continue
+            for it in CPS:
+                r = [rows[(L, d, b, it)] for d in ds]
+                out[(L, b, it)] = dict(
+                    n=len(ds),
+                    cap=sum(x['rc'] for x in r) / len(r),
+                    aware=sum(x['ra'] for x in r) / len(r),
+                    dr=sum(x['ra'] - x['rc'] for x in r) / len(r),
+                    dJ=sum(x['ja'] - x['jc'] for x in r) / len(r))
+    return out
+
+
+def main_quiet():
+    import io, contextlib
+    with contextlib.redirect_stdout(io.StringIO()):
+        return main()
+
+
 if __name__ == '__main__':
-    main()
+    rows = main()
+    print('\n=== means over draws (symbol-level rate; aware - cap) ===')
+    for (L, b, it), v in summary(rows).items():
+        print(f'L={L:3d} beta={b:+d} it={it:3d} n={v["n"]}  cap {v["cap"]:.3f}  aware {v["aware"]:.3f}  '
+              f'aware-cap rate {v["dr"]:+.3f}  J {v["dJ"]:+.3f}')
+    # J minus symbol-level rate of the final design ("design-time optimism"), 600 iterations
+    print('\n=== J - symbol-level rate at 600 iterations (aware / cap) ===')
+    for (L, d, b, it), x in rows.items():
+        if it == 600:
+            print(f'L={L} draw {d} beta={b:+d}: aware {x["ja"] - x["ra"]:+.3f}  cap {x["jc"] - x["rc"]:+.3f}  '
+                  f'aware excess over cap {(x["ja"] - x["ra"]) - (x["jc"] - x["rc"]):+.3f}')
