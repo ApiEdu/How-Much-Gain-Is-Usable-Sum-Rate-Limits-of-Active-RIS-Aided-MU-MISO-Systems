@@ -41,7 +41,7 @@ def dft_lens(M):
 
 class Scene:
     def __init__(self, rng, M=64, N=128, K=4, L=6, fc=28e9, dBR=50.0, dRU=20.0, Pbs=1.0, Pris=1e-2,
-                 sv2=2e-12, s2=2e-12, main_frac=0.7, min_sep=0.12):
+                 sv2=2e-12, s2=2e-12, main_frac=0.7, min_sep=None):
         lam = 3e8 / fc
         pl = lambda d: (lam / (4 * np.pi * d)) ** 2
         self.M, self.N, self.K, self.L = M, N, K, L
@@ -53,6 +53,7 @@ class Scene:
         self.phi = phi
         self.G = np.sqrt(pl(dBR) * N * M) * (steer(N, psi) * c) @ steer(M, phi).conj().T / np.sqrt(N * M)
         # RIS->users: LoS, well separated directions
+        if min_sep is None: min_sep = min(0.12, 0.6 * 1.7 / K)
         while True:
             chi = np.sort(rng.uniform(-0.85, 0.85, K))
             if K == 1 or np.min(np.diff(chi)) > min_sep: break
@@ -65,7 +66,7 @@ class Scene:
 def zf(Heq, Pbs, alpha=0.0):
     """ZF (alpha=0) or regularised ZF precoder; alpha is relative to the mean eigenvalue of Heq Heq^H."""
     H2 = Heq @ Heq.conj().T
-    H2 = H2 + alpha * np.trace(H2).real / H2.shape[0] * np.eye(H2.shape[0])
+    H2 = H2 + max(alpha, 1e-9) * np.trace(H2).real / H2.shape[0] * np.eye(H2.shape[0])
     W = Heq.conj().T @ np.linalg.inv(H2)
     return W * np.sqrt(Pbs) / np.linalg.norm(W)
 
@@ -161,8 +162,9 @@ def select_energy(sc, Ns, ph):
     return np.sort(np.argsort(-cascaded_energy(sc, ph))[:Ns])
 
 
-def select_greedy(sc, Ns, A, aware=True, cand=24, pgrid=None):
+def select_greedy(sc, Ns, A, aware=True, cand=None, pgrid=None):
     """Forward greedy beam selection on the aware (or linear-model) rate; starts from the K strongest beams."""
+    if cand is None: cand = min(sc.M, max(24, 2 * Ns))
     ph0 = phases(sc, np.arange(sc.M))
     en = cascaded_energy(sc, ph0)
     order = np.argsort(-en)
