@@ -1,17 +1,21 @@
-# Beamspace (lens-array) MU system with an active RIS - practical study (work in progress)
+# Lens-antenna (beamspace) MU system aided by an active RIS: practical study
 
-Python (numpy/scipy). Model in `bsmodel.py`; experiments: `run_h1.py`, `diag_decouple.py`, `run_ee.py`, `run_ee2.py`, `run_k.py`.
+Python (numpy/scipy/matplotlib). Model and design routines: `bsmodel.py`. Manuscript draft: `paper/main.tex` (+ `paper/main.pdf`).
 
-## Status (14 Nov 2026) - preliminary, not for citation
-- Beam-set ranking is the same with a linear and a saturating amplifier (Spearman >= 0.997): saturation-aware beam selection brings nothing in this model (`diag_decouple.py`).
-- EE-optimal number of RF chains is about 1.5K for K <= 6 users; EE gain over full-digital 1.4x-3.9x depending on assumed power constants (`run_ee2.py`).
-- Sum-rate does not scale beyond the effective rank of the BS-RIS channel G (L = 6 paths -> about 5 usable streams); with L = 16 K = 8 improves, K = 16 does not (`run_k.py`).
+## Reproduce
+```
+python run_full.py results_S2.jsonl 100000 30 S2 4,8,16 6,16   # 180 tasks (30 draws x K in {4,8,16} x L in {6,16}), resumable, ~25 min on 2 cores
+python validate_bussgang.py          # analytic (Bussgang) vs symbol-level rate  -> validation.json
+python diag_decouple.py              # linear vs saturating beam-set ranking      -> decouple.json
+python make_figs.py                  # figures, tables, paper/numbers.json
+python build_paper.py                # fills paper/main.tex.in from the numbers and compiles paper/main.pdf
+```
+All numbers quoted in the manuscript are generated from `results_S2.jsonl`, `validation.json` and `decouple.json`; nothing is typed by hand.
 
-- Gradient refinement of the RIS phases (`refine_phases`, analytic gradient, W fixed) raises the sum-rate by 7-17% over the alternating heuristic; analytic and symbol-level rates agree within about 0.05 b/s/Hz (`run_refine.py`).
-- Grouping users into slots of size g about equal to the usable rank (`run_group.py`, K = 16) raises the time-averaged sum-rate by 31-45% and EE by about 2x versus serving all K at once; the sum-rate objective still starves weak users (min-user rate about 0).
-- A proportional-fair phase objective (`fair=0.5`) lifts the minimum user rate (0.02 -> 0.25 at K = 4; 0.61 -> 0.97 at K = 8) for a 1-4% sum-rate loss (`run_fair.py`); the precoder is still not fairness-aware.
+## What the study is (and is not)
+A simulation-based practical study, not a new algorithm: heuristic design (regularised ZF, gradient RIS-phase refinement on a proportional-fair objective, greedy beam selection on a linear-amplifier model, correlation-based user grouping with time sharing).
+Limitations: K <= 16, one geometry (28 GHz, 20 m / 10 m, free space, direct link blocked), idealised lens (unitary DFT) and channels, perfect CSI, uniform amplifier gain, analytic (slightly optimistic) rates, several assumed power constants (eta_BS, eta_RIS, P_fix, P_el of a passive element), per-draw best N_s is an oracle choice.
 
-## Open points / assumptions
-- Power constants are placeholders inside the literature ranges: RF chain 100-250 mW, active-RIS element DC 8-26.5 mW (see the paper draft for references); BS PA efficiency 0.4 and fixed power 1 W are assumptions.
-- RIS phases by a heuristic alternating rule (no gradient/WMMSE refinement), uniform amplifier gain, RZF precoder, greedy beam selection, K <= 16, one geometry (28 GHz, 50 m / 20 m), 3-8 channel draws.
-- Passive-RIS baseline not meaningful in this link budget (SNR about -6 dB); pick a geometry where it works before comparing.
+## Earlier exploratory scripts (kept for traceability, superseded by `run_full.py`)
+`run_h1.py`, `run_ee.py`, `run_ee2.py`, `run_k.py`, `run_refine.py`, `run_group.py`, `run_fair.py`, `analyze_*.py`.
+The initial hypothesis (saturation-aware beam selection brings a large gain) was not supported: see `diag_decouple.py` and Section "Saturation and beam selection" of the manuscript.
