@@ -1,0 +1,6 @@
+beamspace/paper/ieeeaccess.cls
+beamspace/paper/IEEEtran.cls
+beamspace/paper/images/
+beamspace/paper/*.aux
+beamspace/paper/*.log
+beamspace/*.log

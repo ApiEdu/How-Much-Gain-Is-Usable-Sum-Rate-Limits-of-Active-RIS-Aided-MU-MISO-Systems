@@ -1,43 +1,53 @@
-\documentclass[10pt,twocolumn,a4paper]{article}
-% Stand-in layout. Port the content to the official IEEE Access template (ieeeaccess.cls) before submission.
-\usepackage[margin=0.75in,columnsep=0.25in]{geometry}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{mathptmx}
+\documentclass{ieeeaccess}
+\usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage{cite}
+\usepackage{array}
+\usepackage{textcomp}
 \usepackage[hyphens]{url}
-\usepackage{enumitem}
-\setlist{nosep,leftmargin=1.4em}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,calc}
 \usepackage[ruled,vlined,linesnumbered,noend]{algorithm2e}
-\usepackage[labelfont=bf,font=small]{caption}
-\usepackage{microtype}
-\setlength{\parskip}{0pt}
 \renewcommand{\arraystretch}{1.08}
+% the copy of ieeeaccess.cls used here needs these for IEEEbiographynophoto (missing in IEEEtran 1.8b)
+\makeatletter
+\@ifundefined{c@biography}{\newcounter{biography}}{}
+\@ifundefined{if@biographyTOCentrynotmade}{\newif\if@biographyTOCentrynotmade\@biographyTOCentrynotmadetrue}{}
+\makeatother
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\CN}{\mathcal{CN}}
 \newcommand{\tr}{\operatorname{tr}}
 \newcommand{\diag}{\operatorname{diag}}
 
-\title{\bfseries Rank-Limited Multiuser Multiplexing in Lens-Antenna Beamspace Systems Aided by an Active RIS: A Practical Energy-Efficiency Study}
-\author{\itshape [Author names and affiliations to be completed]}
-\date{}
-
 \begin{document}
-\maketitle
+\newlength{\xfigwd}\setlength{\xfigwd}{\columnwidth}
+\history{Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.}
+\doi{10.1109/ACCESS.2026.DOI}
+
+\title{Rank-Limited Multiuser Multiplexing in Lens-Antenna Beamspace Systems Aided by an Active RIS: A Practical Energy-Efficiency Study}
+\author{\uppercase{Abdalrahman Basheer Ibrahim}\authorrefmark{1} AND \uppercase{Ibrahim Khider Eltahir}\authorrefmark{1,2}}
+\address[1]{Department of Electronics Engineering, Faculty of Engineering, Sudan University of Science and Technology (SUST), Khartoum 00407, Sudan}
+\address[2]{Department of Cybersecurity Technologies, Al-Esraa University, Baghdad, Iraq}
+\tfootnote{This research received no external funding.}
+
+\markboth
+{Ibrahim and Eltahir: Rank-Limited Multiplexing with an Active RIS and Lens Arrays}
+{Ibrahim and Eltahir: Rank-Limited Multiplexing with an Active RIS and Lens Arrays}
+
+\corresp{Corresponding author: Abdalrahman Basheer Ibrahim (e-mail: Abdalrahman.basheer@outlook.com).}
 
 \begin{abstract}
-Active reconfigurable intelligent surfaces (RISs) amplify the reflected signal and can restore a usable link when the direct path is blocked, but their combination with a lens-antenna (beamspace) base station, where RF chains dominate hardware cost, has not been evaluated with a saturating amplifier model and a common power account. This paper reports a simulation-based practical study of a 28~GHz downlink in which a base station with a 64-beam lens array and $N_s$ selected beams serves $K\le 16$ single-antenna users through a 128-element active RIS with Rapp-type amplifiers. We (i) analyse the amplifier with a Bussgang decomposition, which agrees with symbol-level simulation within @@val_mean_abs@@~bit/s/Hz on average (@@val_mean_rel_pct@@\%); (ii) show that the number of users that can be served simultaneously is limited by the effective rank of the BS--RIS channel, so that serving users in time-shared groups raises the average sum-rate for $K=16$ from @@A16_all@@ to @@A16_g8@@~bit/s/Hz in a 16-path channel; (iii) quantify energy efficiency (EE) under an explicit power model, where operating with the best number of RF chains per channel draw gives on average @@EEr_mean@@$\times$ (range @@EEr_min@@--@@EEr_max@@$\times$) the EE of a 64-RF-chain design that uses the same RIS design procedure, and @@sens_lo@@--@@sens_hi@@$\times$ under literature-based variations of the RF-chain and RIS-element power; and (iv) find that selecting beams with a linear-amplifier model instead of the saturation model costs little in the cases tested. All designs are heuristic (regularised ZF, gradient phase refinement, greedy beam selection); results cover $K\le16$, one geometry and @@n@@ channel draws per setting, and several power constants are assumptions. The study therefore indicates operating regimes rather than optimality bounds. Code and raw results are public.
+Active reconfigurable intelligent surfaces (RISs) can restore a blocked millimeter-wave link by amplifying the reflected signal, but their combination with a lens-antenna (beamspace) base station, where radio-frequency (RF) chains dominate hardware cost, has not been evaluated with a saturating amplifier model and a common power account. This paper reports a simulation-based practical study of a 28~GHz downlink in which a base station with a 64-beam lens array and $N_s$ selected beams serves up to 16 single-antenna users through a 128-element active RIS with Rapp-type amplifiers. We (i) analyse the amplifier with a Bussgang decomposition that agrees with symbol-level simulation within @@val_mean_abs@@~bit/s/Hz on average; (ii) show that the number of simultaneously served users is limited by the effective rank of the base-station-to-RIS channel, so that time-shared user groups raise the average sum-rate for 16 users from @@A16_all@@ to @@A16_g8@@~bit/s/Hz in a 16-path channel; (iii) quantify energy efficiency (EE) under an explicit power model, where the best number of RF chains per channel draw gives on average @@EEr_mean@@$\times$ the EE of a 64-RF-chain design, and @@sens_lo@@--@@sens_hi@@$\times$ under literature-based power variations; and (iv) find that selecting beams with a linear-amplifier model instead of the saturation model costs little in the tested cases. All designs are heuristic, results cover one geometry and @@n@@ channel draws per setting, and several power constants are assumptions, so the study indicates operating regimes rather than optimality bounds. Code and raw results are public.
 \end{abstract}
 
-\begin{center}\small\textbf{Index Terms:} active RIS, beamspace MIMO, lens antenna array, energy efficiency, amplifier saturation, user grouping, millimeter wave.\end{center}
+\begin{keywords}
+Active reconfigurable intelligent surface, amplifier saturation, beamspace MIMO, energy efficiency, lens antenna array, millimeter wave, user grouping.
+\end{keywords}
+
+\titlepgskip=-15pt
+\maketitle
 
 \section{Introduction}
-Millimeter-wave links are easily blocked, and reconfigurable intelligent surfaces (RISs) are a low-cost way to create alternative paths. A passive RIS, however, suffers from double path loss: the reflected link attenuates by the product of the BS--RIS and RIS--user losses, so its gain is limited when the direct path is available and the budget is tight. Active RISs mitigate this by amplifying the reflected signal with reflection-type amplifiers at the cost of extra DC power and amplified noise \cite{long2021,zhang2023}.
+\PARstart{M}{illimeter-wave} links are easily blocked, and reconfigurable intelligent surfaces (RISs) are a low-cost way to create alternative paths. A passive RIS, however, suffers from double path loss: the reflected link attenuates by the product of the BS--RIS and RIS--user losses, so its gain is limited when the direct path is available and the budget is tight. Active RISs mitigate this by amplifying the reflected signal with reflection-type amplifiers at the cost of extra DC power and amplified noise \cite{long2021,zhang2023}.
 
 On the base-station (BS) side, lens-antenna arrays convert the antenna domain into a sparse beamspace so that only a few beams, each with its own RF chain, need to be active \cite{zeng2016,sayeed2013,wang2017,shen2019}. The combination of lens-based beamspace MIMO with RISs has been studied for passive or phase-only surfaces \cite{wanggc2020,liu2021,pal2023,abdullah2025}, and RISs have been proposed as a way to reduce the number of RF chains needed to approach massive-MIMO performance \cite{interdonato2024}.
 
@@ -60,7 +70,7 @@ Section~\ref{sec:rel} summarises related work, Section~\ref{sec:sys} gives the s
 \textbf{RIS with beamspace/lens BS.} Table~\ref{tab:rel} lists the closest works we identified. The first four consider RIS-aided lens or beamspace systems with phase-only surfaces; none, to our knowledge, models amplifier saturation.
 
 \begin{table}[t]\centering\caption{Closest related studies (as described in their abstracts/titles; ``phase-only'' = surface with phase control only).}\label{tab:rel}\small
-\begin{tabular}{@{}p{1.55cm}p{1.9cm}p{1.9cm}p{2.1cm}@{}}\toprule
+\setlength{\tabcolsep}{3pt}\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.25cm}>{\raggedright\arraybackslash}p{2.1cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{2.3cm}@{}}\toprule
 Work & RIS & BS side & Focus\\\midrule
 \cite{wanggc2020} & phase-only, multiple IRSs & lens array & EE, AO\\
 \cite{liu2021} & phase-only IRS & lens, NOMA & weighted sum-rate\\
@@ -73,22 +83,10 @@ This paper & active, Rapp saturation & lens, beam selection & sum-rate, EE, rank
 
 \section{System Model}\label{sec:sys}
 \subsection{Scenario and signal model}
-A BS with an $M$-antenna lens array transmits to $K$ single-antenna users through an RIS with $N$ elements (Fig.~\ref{fig:sys}). The direct BS--user link is blocked. The lens is modelled as an ideal unitary DFT $\mathbf U\in\mathbb C^{M\times M}$ whose $m$-th column is the beam toward $\sin\varphi_m=(2m-(M-1))/M$. Only the beams in a set $\mathcal S$ with $|\mathcal S|=N_s$ have an RF chain; $\mathbf U_{\mathcal S}$ collects the selected columns. With a beamspace precoder $\mathbf W\in\mathbb C^{N_s\times K}$ and symbols $\mathbf s\sim\CN(\mathbf 0,\mathbf I_K)$ the transmit vector is $\mathbf x=\mathbf U_{\mathcal S}\mathbf W\mathbf s$ with $\|\mathbf W\|_F^2=P_{\rm BS}$.
+A BS with an $M$-antenna lens array transmits to $K$ single-antenna users through an RIS with $N$ elements (Fig.~\ref{fig:sys}). The direct BS--user link is blocked. The lens is modelled as an ideal unitary DFT $\mathbf U\in\mathbb C^{M\times M}$ whose $m$-th column is the beam toward $\sin\varphi_m=(2m-(M-1))/M$. Only the beams in a set $\mathcal S$ with $|\mathcal S|=N_s$ have an RF chain; $\mathbf U_{\mathcal S}$ collects the selected columns. With a beamspace precoder $\mathbf W\in\mathbb C^{N_s\times K}$ and symbols $\mathbf s\sim\CN(\mathbf 0,\mathbf I_K)$ the transmit vector is $\mathbf x=\mathbf U_{\mathcal S}\mathbf W\mathbf s$ with $\|\mathbf W\|_F^2=P_\mathrm{BS}$.
 
 \begin{figure}[t]\centering
-\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth,font=\scriptsize,every node/.style={align=center}]
-\node[draw,rounded corners,minimum width=1.6cm,minimum height=1.1cm] (bs) at (0,0) {BS: lens $\mathbf U$\\ $N_s$ of $M$ beams};
-\node[draw,rounded corners,minimum width=1.7cm,minimum height=1.1cm] (ris) at (3.0,0.9) {active RIS\\ $N$ amplifiers $g(\cdot)$};
-\node[draw,circle,inner sep=1pt] (u1) at (6.0,1.5) {U$_1$};
-\node[draw,circle,inner sep=1pt] (u2) at (6.0,0.2) {U$_2$};
-\node (u3) at (6.0,-0.7) {$\vdots$};
-\node[draw,circle,inner sep=1pt] (uK) at (6.0,-1.5) {U$_K$};
-\draw[->] (bs) -- node[above,sloped]{$\mathbf G\ (L$ paths)} (ris);
-\draw[->] (ris) -- (u1); \draw[->] (ris) -- (u2); \draw[->] (ris) -- node[right,xshift=2pt]{$\mathbf f_k$} (uK);
-\draw[dashed,->] (bs.south east) -- (4.2,-1.6) -- (uK.west);
-\node at (3.1,-1.9) {direct link blocked};
-\draw[red,thick] (2.95,-1.25) -- (3.25,-1.55); \draw[red,thick] (3.25,-1.25) -- (2.95,-1.55);
-\end{tikzpicture}
+\includegraphics[width=0.95\columnwidth]{figs/fig_sys.pdf}
 \caption{System model: lens-antenna BS with beam selection, active RIS with per-element amplifiers, $K$ single-antenna users, blocked direct link.}\label{fig:sys}
 \end{figure}
 
@@ -96,7 +94,7 @@ The signal arriving at RIS element $n$ is $u_n=[\mathbf G\mathbf x]_n+v_n$ with 
 \begin{equation}
 g(u)=\frac{p\,u}{\bigl(1+(p|u|/A)^{4}\bigr)^{1/4}},\label{eq:rapp}
 \end{equation}
-where $p$ is the small-signal amplitude gain (taken equal for all elements) and $A$ the output saturation amplitude, set as $A^2=P_{\rm RIS}/N$. The user signal is
+where $p$ is the small-signal amplitude gain (taken equal for all elements) and $A$ the output saturation amplitude, set as $A^2=P_\mathrm{RIS}/N$. The user signal is
 \begin{equation}
 \mathbf r=\mathbf F\,\diag(e^{j\boldsymbol\theta})\,g(\mathbf u)+\mathbf n,\qquad \mathbf n\sim\CN(\mathbf 0,\sigma^2\mathbf I_K),\label{eq:rx}
 \end{equation}
@@ -118,18 +116,18 @@ For $u_n\sim\CN(0,P_n)$ with $P_n=\|\mathbf e_n^T\mathbf G\mathbf U_{\mathcal S}
 \begin{equation}
 \gamma_k=\frac{|T_{kk}|^2}{\sum_{j\ne k}|T_{kj}|^2+\sum_n|f_{kn}|^2\bigl(\kappa_n^2\sigma_v^2+\sigma_{d,n}^2\bigr)+\sigma^2},\label{eq:sinr}
 \end{equation}
-with $\mathbf T=\mathbf F\diag(\boldsymbol\kappa\odot e^{j\boldsymbol\theta})\mathbf G\mathbf U_{\mathcal S}\mathbf W$. The rate is $R_k=\log_2(1+\gamma_k)$ and the RIS output power is $P_{\rm out}=\sum_n\E|g(u_n)|^2\le P_{\rm RIS}$. The independence approximation and Gaussian input are checked against symbol-level simulation in Section~\ref{sec:val}.
+with $\mathbf T=\mathbf F\diag(\boldsymbol\kappa\odot e^{j\boldsymbol\theta})\mathbf G\mathbf U_{\mathcal S}\mathbf W$. The rate is $R_k=\log_2(1+\gamma_k)$ and the RIS output power is $P_\mathrm{out}=\sum_n\E|g(u_n)|^2\le P_\mathrm{RIS}$. The independence approximation and Gaussian input are checked against symbol-level simulation in Section~\ref{sec:val}.
 
 \subsection{Power consumption}
 The total consumption is
 \begin{equation}
-P_{\rm tot}=\frac{P_{\rm BS}}{\eta_{\rm BS}}+N_sP_{\rm RF}+P_{\rm fix}+\frac{P_{\rm out}}{\eta_{\rm RIS}}+N P_{\rm el},\label{eq:power}
+P_\mathrm{tot}=\frac{P_\mathrm{BS}}{\eta_\mathrm{BS}}+N_sP_\mathrm{RF}+P_\mathrm{fix}+\frac{P_\mathrm{out}}{\eta_\mathrm{RIS}}+N P_\mathrm{el},\label{eq:power}
 \end{equation}
-with $P_{\rm el}=P_{\rm el}^{\rm act}$ for the active RIS (amplifier bias per element) and, for the passive reference, $P_{\rm out}$ is omitted and $P_{\rm el}=P_{\rm el}^{\rm pas}$. Energy efficiency is $\mathrm{EE}=\sum_kR_k/P_{\rm tot}$ in bit/s/Hz/W. The constants (Table~\ref{tab:par}) are ranges from the literature or explicit assumptions; Section~\ref{sec:ee} tests their influence.
+with $P_\mathrm{el}=P_\mathrm{el}^\mathrm{act}$ for the active RIS (amplifier bias per element) and, for the passive reference, $P_\mathrm{out}$ is omitted and $P_\mathrm{el}=P_\mathrm{el}^\mathrm{pas}$. Energy efficiency is $\mathrm{EE}=\sum_kR_k/P_\mathrm{tot}$ in bit/s/Hz/W. The constants (Table~\ref{tab:par}) are ranges from the literature or explicit assumptions; Section~\ref{sec:ee} tests their influence.
 
 \section{Design Procedure}\label{sec:des}
 \subsection{Problem and approach}
-For a given user set and $N_s$ the goal is to maximise $\sum_kR_k$ over $(\mathcal S,\mathbf W,p,\boldsymbol\theta)$ subject to $|\mathcal S|=N_s$, $\|\mathbf W\|_F^2\le P_{\rm BS}$, $P_{\rm out}\le P_{\rm RIS}$ and $|e^{j\theta_n}|=1$. This problem is non-convex and we do not solve it to optimality. The procedure below is a heuristic pipeline; $N_s$ is swept rather than optimised, and EE is evaluated afterwards.
+For a given user set and $N_s$ the goal is to maximise $\sum_kR_k$ over $(\mathcal S,\mathbf W,p,\boldsymbol\theta)$ subject to $|\mathcal S|=N_s$, $\|\mathbf W\|_F^2\le P_\mathrm{BS}$, $P_\mathrm{out}\le P_\mathrm{RIS}$ and $|e^{j\theta_n}|=1$. This problem is non-convex and we do not solve it to optimality. The procedure below is a heuristic pipeline; $N_s$ is swept rather than optimised, and EE is evaluated afterwards.
 
 \textbf{Phase gradient.} For fixed $\mathbf W$ and $p$ the powers $P_n$, hence $\kappa_n$ and $\sigma_{d,n}^2$, do not depend on $\boldsymbol\theta$. Writing $c_{kj}[n]=f_{kn}\kappa_n[\mathbf G\mathbf U_{\mathcal S}\mathbf W]_{nj}$, \eqref{eq:sinr} becomes
 \begin{equation}
@@ -138,27 +136,27 @@ For a given user set and $N_s$ the goal is to maximise $\sum_kR_k$ over $(\mathc
 so the objective and its gradient with respect to $\boldsymbol\theta$ are available in closed form. We ascend the proportional-fair objective $\sum_k\log_2(R_k+\epsilon)$, $\epsilon=0.5$, with Adam \cite{kingma2015}; plain sum-rate maximisation tended to starve weak users in earlier trials.
 
 \begin{algorithm}[t]\caption{Design for one user group (one time slot)}\label{alg:design}\small
-\KwIn{channels $\mathbf G,\mathbf F$ of the group, $N_s$, $P_{\rm BS}$, $P_{\rm RIS}$}
+\KwIn{channels $\mathbf G,\mathbf F$ of the group, $N_s$, $P_\mathrm{BS}$, $P_\mathrm{RIS}$}
 Align RIS phases with a ZF precoder over all $M$ beams and rank the beams by cascaded energy\;
 \eIf{$N_s\ge 25$}{$\mathcal S\leftarrow$ all $M$ beams (full-digital reference)}{greedy forward selection on the \emph{linear}-amplifier model: start from the $K$ strongest beams; add, from the $\max\{24,2N_s\}$ strongest, the beam that maximises the sum-rate (8-point $p$ grid) until $|\mathcal S|=N_s$}
 Initialise $\boldsymbol\theta$ by alternating phase alignment on $\mathcal S$\;
 \For{outer round $=1,2$}{
- choose $(p,\alpha)$ on a grid ($p\in[1,100]$, 16 log-spaced points; $\alpha\in\{0,0.1,0.3,1\}$) maximising the sum-rate of the RZF precoder \cite{peel2005} built on the effective channel including $\kappa_n$ (two fixed-point updates), subject to $P_{\rm out}\le P_{\rm RIS}$\;
+ choose $(p,\alpha)$ on a grid ($p\in[1,100]$, 16 log-spaced points; $\alpha\in\{0,0.1,0.3,1\}$) maximising the sum-rate of the RZF precoder \cite{peel2005} built on the effective channel including $\kappa_n$ (two fixed-point updates), subject to $P_\mathrm{out}\le P_\mathrm{RIS}$\;
  refine $\boldsymbol\theta$: 40 Adam steps on the proportional-fair objective with $\mathbf W,p$ fixed\;
  keep the design with the best objective\;}
 \KwOut{$\mathcal S,\mathbf W,p,\boldsymbol\theta$}\end{algorithm}
 
 \subsection{User grouping}
-When $K$ exceeds what the channel rank supports, users are split into $\lceil K/g\rceil$ groups served in equal time slots, so each user's rate is $R_k/\lceil K/g\rceil$. Groups are built greedily: the strongest remaining user (largest $\|\mathbf f_k\|$) starts a group and users with the smallest maximum normalised correlation $|\mathbf f_i\mathbf f_j^H|/(\|\mathbf f_i\|\|\mathbf f_j\|)$ to current members are added until the group holds $g$ users. Algorithm~\ref{alg:design} runs separately in each slot, and $P_{\rm tot}$ is averaged over slots. We report the sum-rate, the minimum user rate, Jain's index \cite{jain1984} and EE, all time-averaged.
+When $K$ exceeds what the channel rank supports, users are split into $\lceil K/g\rceil$ groups served in equal time slots, so each user's rate is $R_k/\lceil K/g\rceil$. Groups are built greedily: the strongest remaining user (largest $\|\mathbf f_k\|$) starts a group and users with the smallest maximum normalised correlation $|\mathbf f_i\mathbf f_j^H|/(\|\mathbf f_i\|\|\mathbf f_j\|)$ to current members are added until the group holds $g$ users. Algorithm~\ref{alg:design} runs separately in each slot, and $P_\mathrm{tot}$ is averaged over slots. We report the sum-rate, the minimum user rate, Jain's index \cite{jain1984} and EE, all time-averaged.
 
 \subsection{Complexity}
 The $K\times K\times N$ tensor of $c_{kj}[n]$ is formed once per refinement call and each Adam step then costs $\mathcal O(K^2N)$. One evaluation of \eqref{eq:sinr} costs $\mathcal O(NN_sK)$ plus $N$ one-dimensional quadratures; each greedy step evaluates the grid design for up to $\max\{24,2N_s\}$ candidates, so beam selection dominates for $N_s\le24$. We make no low-complexity claim: the implementation is unoptimised Python and the whole set of configurations for one scene takes a median @@sec4@@~s, @@sec8@@~s and @@sec16@@~s for $K=4,8,16$ on a shared two-core CPU (the maximum was @@sec16max@@~s for $K=16$). Full-digital designs avoid the greedy search, so run-time is not comparable between arms.
 
 \section{Simulation Setup}\label{sec:setup}
-Table~\ref{tab:par} lists all parameters. For each $(K,L)$ we simulate $n=@@n@@$ independent channel draws (seeds $100+d$; $d=0,\dots,n-1$ for every $(K,L)$, so the draw index is shared but channels differ across $K$ and $L$). Plots and tables report means with 95\% confidence half-widths $1.96\,s/\sqrt n$ unless noted. Schemes: (i) \emph{beamspace}: group size $g\in\{4,8,K\}$ and $N_s\in\{\lceil1.5g\rceil,\lceil3g\rceil,\lceil6g\rceil\}$ (any value above 24 is replaced by all 64 beams) plus the full-digital arm $N_s=64$; (ii) a \emph{passive RIS} reference with the same grouping, $p=1$, no amplifier noise and $P_{\rm el}^{\rm pas}$.
+Table~\ref{tab:par} lists all parameters. For each $(K,L)$ we simulate $n=@@n@@$ independent channel draws (seeds $100+d$; $d=0,\dots,n-1$ for every $(K,L)$, so the draw index is shared but channels differ across $K$ and $L$). Plots and tables report means with 95\% confidence half-widths $1.96\,s/\sqrt n$ unless noted. Schemes: (i) \emph{beamspace}: group size $g\in\{4,8,K\}$ and $N_s\in\{\lceil1.5g\rceil,\lceil3g\rceil,\lceil6g\rceil\}$ (any value above 24 is replaced by all 64 beams) plus the full-digital arm $N_s=64$; (ii) a \emph{passive RIS} reference with the same grouping, $p=1$, no amplifier noise and $P_\mathrm{el}^\mathrm{pas}$.
 
 \begin{table}[t]\centering\caption{Simulation parameters. ``Set'' = chosen by us; ``Lit.'' = within a range reported in the cited works; ``Assumed'' = our assumption without source.}\label{tab:par}\footnotesize
-\begin{tabular}{@{}p{3.05cm}p{3.15cm}p{0.85cm}@{}}\toprule
+\setlength{\tabcolsep}{4pt}\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{3.55cm}>{\raggedright\arraybackslash}p{1.1cm}@{}}\toprule
 Parameter & Value & Source\\\midrule
 Carrier frequency $f_c$ & 28 GHz & Set\\
 Lens beams $M$ / RF chains $N_s$ & 64 / $\{6,12,24,64\}$ & Set\\
@@ -166,21 +164,21 @@ RIS elements $N$ & 128 (ULA, $\lambda/2$) & Set\\
 Users $K$, group size $g$ & $\{4,8,16\}$, $\{4,8,K\}$ & Set\\
 BS--RIS / RIS--user distance & 20 m / 10 m, free space & Set\\
 BS--RIS paths $L$ & 6, 16 (70\% main path) & Set\\
-$P_{\rm BS}$, $P_{\rm RIS}$ & 1 W (30 dBm), 0.1 W (20 dBm) & Set\\
-Saturation amplitude $A$ & $\sqrt{P_{\rm RIS}/N}$ (0 dB back-off) & Set\\
+$P_\mathrm{BS}$, $P_\mathrm{RIS}$ & 1 W (30 dBm), 0.1 W (20 dBm) & Set\\
+Saturation amplitude $A$ & $\sqrt{P_\mathrm{RIS}/N}$ (0 dB back-off) & Set\\
 $\sigma_v^2=\sigma^2$ & $2\times10^{-12}$ W ($-87$ dBm) & Set\\
 RZF load $\alpha$; PF const.\ $\epsilon$ & $\{0,.1,.3,1\}$; 0.5 & Set\\
-$P_{\rm RF}$ per chain & 250 mW (100--250) \cite{koc,qi2022,hao2017} & Lit.\\
-$P_{\rm el}^{\rm act}$ per element & 20 mW (8--26.5) \cite{gavriilidis2025} & Lit.\\
-$P_{\rm el}^{\rm pas}$ per element & 1 mW & Assumed\\
-$\eta_{\rm BS}$, $\eta_{\rm RIS}$ & 0.4, 0.4 & Assumed\\
-$P_{\rm fix}$ & 1 W & Assumed\\
+$P_\mathrm{RF}$ per chain & 250 mW (100--250) \cite{koc,qi2022,hao2017} & Lit.\\
+$P_\mathrm{el}^\mathrm{act}$ per element & 20 mW (8--26.5) \cite{gavriilidis2025} & Lit.\\
+$P_\mathrm{el}^\mathrm{pas}$ per element & 1 mW & Assumed\\
+$\eta_\mathrm{BS}$, $\eta_\mathrm{RIS}$ & 0.4, 0.4 & Assumed\\
+$P_\mathrm{fix}$ & 1 W & Assumed\\
 Draws per $(K,L)$ & @@n@@ & Set\\\bottomrule
 \end{tabular}\end{table}
 
 \section{Results}\label{sec:res}
 \subsection{Validation of the Bussgang model}\label{sec:val}
-For @@val_n@@ designs ($(K,L,N_s)\in\{(4,6,12),(8,16,12),(16,16,24)\}$, ten draws each) we compared the analytical sum-rate with a symbol-level simulation that passes Gaussian symbols through \eqref{eq:rapp} (60\,000 symbols per design, SINR from the empirical correlation with the transmitted symbols). The mean absolute difference was @@val_mean_abs@@~bit/s/Hz (@@val_mean_rel_pct@@\% relative), the maximum @@val_max_abs@@~bit/s/Hz (@@val_max_rel_pct@@\%), and the analytical rate was on average @@val_signed@@~bit/s/Hz \emph{higher}. Reported analytical rates are therefore slightly optimistic. The comparison does not cover non-Gaussian (finite-alphabet) inputs.
+For @@val_n@@ designs (ten draws each for $(K,L,N_s)=$ $(4,6,12)$, $(8,16,12)$ and $(16,16,24)$) we compared the analytical sum-rate with a symbol-level simulation that passes Gaussian symbols through \eqref{eq:rapp} (60\,000 symbols per design, SINR from the empirical correlation with the transmitted symbols). The mean absolute difference was @@val_mean_abs@@~bit/s/Hz (@@val_mean_rel_pct@@\% relative), the maximum @@val_max_abs@@~bit/s/Hz (@@val_max_rel_pct@@\%), and the analytical rate was on average @@val_signed@@~bit/s/Hz \emph{higher}. Reported analytical rates are therefore slightly optimistic. The comparison does not cover non-Gaussian (finite-alphabet) inputs.
 
 \subsection{Rank limit and user grouping}\label{sec:rank}
 Fig.~\ref{fig:svd} shows the singular values of $\mathbf G$ for draws 0--19 (the first 20 seeds of the grid). With a $-20$~dB threshold, the median effective rank is @@er6@@ for $L=6$ and @@er16@@ for $L=16$, i.e.\ well below $K=16$, consistent with \eqref{eq:rank}.
@@ -195,7 +193,7 @@ For $L=6$, however, fairness remains poor even with the proportional-fair phase 
 
 \begin{table*}[t]\centering\caption{$K=16$: selected configurations (mean over $n=@@n@@$ draws; $\pm$ = 95\% CI). Rates are time-averaged over slots; ``passive'' uses $N_s=12$, $g=4$.}\label{tab:main}\small
 \begin{tabular}{@{}rlccccc@{}}\toprule
-$L$ & Configuration & Sum-rate [bit/s/Hz] & Min-user rate & Jain & $P_{\rm tot}$ [W] & EE [bit/s/Hz/W]\\\midrule
+$L$ & Configuration & Sum-rate [bit/s/Hz] & Min-user rate & Jain & $P_\mathrm{tot}$ [W] & EE [bit/s/Hz/W]\\\midrule
 \input{tab_main.tex}\\
 \bottomrule
 \end{tabular}\end{table*}
@@ -211,31 +209,34 @@ Table~\ref{tab:ratio} gives the paired EE ratio between the best beamspace confi
 \begin{tabular}{@{}rcc@{}}\toprule $K$ & $L$ & ratio\\\midrule\input{tab_ratio.tex}\\
 \bottomrule\end{tabular}\end{table}
 
-\textbf{Sensitivity to power constants.} Table~\ref{tab:sens} recomputes the best-per-draw EE ratio with $P_{\rm RF}\in\{100,160,250\}$~mW and $P_{\rm el}^{\rm act}\in\{8.5,20,26.5\}$~mW, i.e.\ literature-based ranges. The mean ratio stays between @@sens_lo@@ and @@sens_hi@@, and the minimum over draws is @@sens_min@@ in the worst case. Constants outside these ranges, or different $\eta_{\rm BS}$, $\eta_{\rm RIS}$, $P_{\rm fix}$, were not varied; the largest benefit occurs when RF chains are expensive relative to the RIS elements.
+\textbf{Sensitivity to power constants.} Table~\ref{tab:sens} recomputes the best-per-draw EE ratio with $P_\mathrm{RF}\in\{100,160,250\}$~mW and $P_\mathrm{el}^\mathrm{act}\in\{8.5,20,26.5\}$~mW, i.e.\ literature-based ranges. The mean ratio stays between @@sens_lo@@ and @@sens_hi@@, and the minimum over draws is @@sens_min@@ in the worst case. Constants outside these ranges, or different $\eta_\mathrm{BS}$, $\eta_\mathrm{RIS}$, $P_\mathrm{fix}$, were not varied; the largest benefit occurs when RF chains are expensive relative to the RIS elements.
 
-\begin{table}[t]\centering\caption{Sensitivity of the best-per-draw EE ratio to $P_{\rm RF}$ and $P_{\rm el}^{\rm act}$ (all $(K,L,g)$ combined).}\label{tab:sens}\small
-\begin{tabular}{@{}rrcc@{}}\toprule $P_{\rm RF}$ [mW] & $P_{\rm el}$ [mW] & mean ratio & min ratio\\\midrule\input{tab_sens.tex}\\
+\begin{table}[t]\centering\caption{Sensitivity of the best-per-draw EE ratio to $P_\mathrm{RF}$ and $P_\mathrm{el}^\mathrm{act}$ (all $(K,L,g)$ combined).}\label{tab:sens}\small
+\begin{tabular}{@{}rrcc@{}}\toprule $P_\mathrm{RF}$ [mW] & $P_\mathrm{el}$ [mW] & mean ratio & min ratio\\\midrule\input{tab_sens.tex}\\
 \bottomrule\end{tabular}\end{table}
 
 \subsection{Passive RIS reference}
 With the same BS power and a passive RIS ($p=1$) the average sum-rate at $K=8$, $L=16$, $g=4$, $N_s=12$ is @@pas_K8L16@@~bit/s/Hz versus @@act_K8L16@@ for the active RIS; across all $(K,L)$ draws it never exceeds @@pas_max@@~bit/s/Hz (Table~\ref{tab:main} gives the $K=16$ case). This large gap reflects the chosen link budget (blocked direct link, 1~W BS, $30$ m total reflected path) and the fact that the active RIS adds up to 0.1~W of output power; the EE column accounts for the extra consumption, but we did not evaluate the passive RIS with a larger BS power or more RIS elements. The comparison is scenario-specific.
 
 \subsection{Saturation and beam selection}\label{sec:dec}
-Because the beam selection used in Section~\ref{sec:rank}--\ref{sec:ee} ranks beams with a linear amplifier, we tested whether this ordering matters. For @@dec_draws@@ channel draws ($K=4$, $L=6$, $P_{\rm RIS}=10$~dBm in this diagnostic), saturation back-offs $\beta=10\log_{10}(A^2N/P_{\rm RIS})\in\{-5,0,5\}$~dB and 120 random sets of six beams among the 20 strongest, we compared the sum-rate ordering under a linear amplifier and under the saturating amplifier. The Spearman correlation was lowest, @@dec_rho_min@@, at $\beta=-5$~dB and at least @@dec_rho_p5@@ at $\beta=+5$~dB; the best beam set under the linear model coincided with the best one under saturation in @@dec_same@@ of @@dec_n@@ cases, and the largest rate loss from using the linear-model choice was @@dec_maxloss@@~bit/s/Hz. Saturation therefore has a modest influence on which beams to select when RIS input power is spread by about @@dec_spread_lo@@--@@dec_spread_hi@@~dB across elements. This test used random beam sets and $K=4$ only; it does not exclude a larger interaction for other geometries or stronger compression.
+Because the beam selection used in Section~\ref{sec:rank}--\ref{sec:ee} ranks beams with a linear amplifier, we tested whether this ordering matters. For @@dec_draws@@ channel draws ($K=4$, $L=6$, $P_\mathrm{RIS}=10$~dBm in this diagnostic), saturation back-offs $\beta=10\log_{10}(A^2N/P_\mathrm{RIS})\in\{-5,0,5\}$~dB and 120 random sets of six beams among the 20 strongest, we compared the sum-rate ordering under a linear amplifier and under the saturating amplifier. The Spearman correlation was lowest, @@dec_rho_min@@, at $\beta=-5$~dB and at least @@dec_rho_p5@@ at $\beta=+5$~dB; the best beam set under the linear model coincided with the best one under saturation in @@dec_same@@ of @@dec_n@@ cases, and the largest rate loss from using the linear-model choice was @@dec_maxloss@@~bit/s/Hz. Saturation therefore has a modest influence on which beams to select when RIS input power is spread by about @@dec_spread_lo@@--@@dec_spread_hi@@~dB across elements. This test used random beam sets and $K=4$ only; it does not exclude a larger interaction for other geometries or stronger compression.
 
 \section{Discussion and Limitations}\label{sec:lim}
 \textbf{What the results support.} (i) Under a blocked direct link and a few resolvable BS--RIS paths, the number of simultaneously served users is bounded by the effective channel rank, and time-shared groups of comparable size raise the average sum-rate and EE. (ii) In our power model, EE is maximised with 6--12 RF chains rather than 64. (iii) The ordering of beams is only weakly sensitive to amplifier saturation in the tested cases.
 
-\textbf{What they do not support.} No claim is made about optimality, about superiority over joint-optimisation algorithms (none was implemented as a baseline), or about scaling beyond $K=16$ ($K=32$ was dropped for computing cost). Results are for one geometry (20~m/10~m, free space), idealised channel and lens models (no blockage on the RIS--user side, no beam-squint, no lens loss), perfect CSI, and uniform amplifier gain across RIS elements. The designs are heuristics; sum-rate is not monotonic in $N_s$ in our results, which shows the pipeline leaves performance unrealised. Several power constants ($\eta_{\rm BS}$, $\eta_{\rm RIS}$, $P_{\rm fix}$, $P_{\rm el}^{\rm pas}$) are assumptions; the best $N_s$ per draw is an oracle choice. Rates are analytical (slightly optimistic, Section~\ref{sec:val}), channel draws are @@n@@ per setting, and time-sharing assumes ideal slot allocation with no signalling or switching overhead.
+\textbf{What they do not support.} No claim is made about optimality, about superiority over joint-optimisation algorithms (none was implemented as a baseline), or about scaling beyond $K=16$ ($K=32$ was dropped for computing cost). Results are for one geometry (20~m/10~m, free space), idealised channel and lens models (no blockage on the RIS--user side, no beam-squint, no lens loss), perfect CSI, and uniform amplifier gain across RIS elements. The designs are heuristics; sum-rate is not monotonic in $N_s$ in our results, which shows the pipeline leaves performance unrealised. Several power constants ($\eta_\mathrm{BS}$, $\eta_\mathrm{RIS}$, $P_\mathrm{fix}$, $P_\mathrm{el}^\mathrm{pas}$) are assumptions; the best $N_s$ per draw is an oracle choice. Rates are analytical (slightly optimistic, Section~\ref{sec:val}), channel draws are @@n@@ per setting, and time-sharing assumes ideal slot allocation with no signalling or switching overhead.
 
 \section{Conclusion}
 For a lens-antenna BS serving many users through an active RIS with a blocked direct link, the achievable multiplexing is governed by the effective rank of the BS--RIS channel rather than by the number of users or RF chains. In our simulations, grouping users close to that rank and using a few RF chains gave the best sum-rate/EE trade-off, with EE gains over a 64-RF-chain design of about @@fx_g4n12@@$\times$ for fixed $g=4$, $N_s=12$ and between @@sens_lo@@ and @@sens_hi@@$\times$ over the tested power constants (best-per-draw). These figures depend on our heuristic design, assumed constants and a single geometry, so they indicate regimes rather than guarantees. Natural next steps are joint optimisation of beams, precoder, phases and non-uniform amplifier gains under the saturation model, $K$ beyond 16, imperfect CSI, and measured lens/amplifier characteristics.
 
-\section*{Data and Code Availability}
-Scripts, raw per-draw results (\texttt{results\_S2.jsonl}) and the generator for all tables and figures are in the public repository \url{https://github.com/ApiEdu/How-Much-Gain-Is-Usable-Sum-Rate-Limits-of-Active-RIS-Aided-MU-MISO-Systems} (branch \texttt{beamspace-saturation}; to be merged/tagged at submission).
+\section*{Acknowledgment}
+Generative artificial intelligence (Claude Sonnet~5.5, Anthropic) was used to implement the simulation code and analysis scripts, to check the reported numbers against the simulation logs, to search the literature and to draft and edit the text. The authors reviewed the output and are responsible for the content of this paper. The AI assistant is not an author.
 
-\appendix
-\section{Rapp-amplifier Bussgang moments}
+\section*{Data and Code Availability}
+Scripts, raw per-draw results (\texttt{results\_S2.jsonl}) and the generator for all tables and figures are in the public repository \url{https://github.com/ApiEdu/How-Much-Gain-Is-Usable-Sum-Rate-Limits-of-Active-RIS-Aided-MU-MISO-Systems} (branch \texttt{beamspace-saturation}).
+
+\appendices
+\section{Rapp-Amplifier Bussgang Moments}
 Let $t=|u|^2/P\sim\mathrm{Exp}(1)$ and $\rho=p^2P/A^2$. Then
 \begin{align}
 \kappa&=p\,\E_t\!\bigl[t\,(1+\rho^2t^2)^{-1/4}\bigr],\\
@@ -244,6 +245,14 @@ Let $t=|u|^2/P\sim\mathrm{Exp}(1)$ and $\rho=p^2P/A^2$. Then
 \end{align}
 These follow from \eqref{eq:rapp} with $|u|^2=Pt$.
 
-\bibliographystyle{unsrt}
 @@BIB@@
+\begin{IEEEbiographynophoto}{ABDALRAHMAN BASHEER IBRAHIM}
+received the B.Sc.\ degree in electronics engineering from the International University of Africa, Khartoum, Sudan, in 2016, and the M.Sc.\ degree in electronics engineering from the Sudan University of Science and Technology (SUST), Khartoum, in 2019. He is currently pursuing the Ph.D.\ degree in electronics engineering at SUST. He is an Instructor with the Department of Electronics Engineering, Faculty of Engineering, University of Garden City, Khartoum. His research interests include active reconfigurable intelligent surfaces, optimization of multiuser MISO systems, and 6G wireless communications.
+\end{IEEEbiographynophoto}
+
+\begin{IEEEbiographynophoto}{IBRAHIM KHIDER ELTAHIR}
+received the Ph.D.\ degree in communication and information systems from Huazhong University of Science and Technology, Wuhan, China, in 2000. He is currently a Professor of Communication Engineering with the Department of Electronics Engineering, Faculty of Engineering, Sudan University of Science and Technology (SUST), Khartoum, Sudan.
+\end{IEEEbiographynophoto}
+
+\EOD
 \end{document}

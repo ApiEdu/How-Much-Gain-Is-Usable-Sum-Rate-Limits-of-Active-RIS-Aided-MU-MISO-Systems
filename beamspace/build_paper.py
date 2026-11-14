@@ -83,12 +83,24 @@ for m in re.finditer(r'\\cite\{([^}]*)\}', body):
         if k not in order: order.append(k)
 missing = [k for k in order if k not in BIB]; assert not missing, missing
 unused = [k for k in BIB if k not in order]
-bib = '\\begin{thebibliography}{99}\n' + '\n'.join(f'\\bibitem{{{k}}} {BIB[k]}' for k in order) + '\n\\end{thebibliography}'
+bib = '\\begin{thebibliography}{00}\n' + '\n'.join(f'\\bibitem{{{k}}} {BIB[k]}' for k in order) + '\n\\end{thebibliography}'
 body = body.replace('@@BIB@@', bib)
 open('paper/main.tex', 'w').write(body)
+_abs = re.search(r'\\begin\{abstract\}(.*?)\\end\{abstract\}', body, re.S).group(1)
+_abs = re.sub(r'\$[^$]*\$', 'x', _abs); _abs = re.sub(r'\\[a-zA-Z]+|[~{}]', ' ', _abs)
+nw = len(_abs.split()); print('abstract words:', nw)
+if not 150 <= nw <= 250: W.append(f'abstract has {nw} words (IEEE Access asks for 150-250)')
 print('placeholders filled; refs:', len(order), 'unused bib entries:', unused)
 for w in W: print('WARNING (template claim not supported):', w)
+import shutil
+ACC = os.environ.get('IEEEACCESS_DIR', '/tmp/acc')   # folder with ieeeaccess.cls, IEEEtran.cls and images/ (official IEEE Access template; not redistributed in the repo)
+for fn in ('ieeeaccess.cls', 'IEEEtran.cls'):
+    if not os.path.exists('paper/' + fn) and os.path.exists(os.path.join(ACC, fn)): shutil.copy(os.path.join(ACC, fn), 'paper/' + fn)
+if not os.path.isdir('paper/images') and os.path.isdir(os.path.join(ACC, 'images')): shutil.copytree(os.path.join(ACC, 'images'), 'paper/images')
 if '--no-compile' not in sys.argv:
+    if os.path.exists('paper/fig_sys.tex') and (not os.path.exists('paper/figs/fig_sys.pdf') or os.path.getmtime('paper/fig_sys.tex') > os.path.getmtime('paper/figs/fig_sys.pdf')):
+        subprocess.run(['pdflatex', '-interaction=nonstopmode', '-halt-on-error', 'fig_sys.tex'], cwd='paper', capture_output=True, check=True)
+        os.replace('paper/fig_sys.pdf', 'paper/figs/fig_sys.pdf')
     for _ in range(2):
         r = subprocess.run(['pdflatex', '-interaction=nonstopmode', '-halt-on-error', 'main.tex'], cwd='paper', capture_output=True, text=True)
         if r.returncode: print(r.stdout[-3000:]); sys.exit(1)

@@ -1,6 +1,6 @@
 # Lens-antenna (beamspace) MU system aided by an active RIS: practical study
 
-Python (numpy/scipy/matplotlib). Model and design routines: `bsmodel.py`. Manuscript draft: `paper/main.tex` (+ `paper/main.pdf`).
+Python (numpy/scipy/matplotlib). Model and design routines: `bsmodel.py`. Manuscript draft in IEEE Access format: `paper/main.tex` (+ `paper/main.pdf`).
 
 ## Reproduce
 ```
@@ -9,6 +9,7 @@ python validate_bussgang.py          # analytic (Bussgang) vs symbol-level rate 
 python diag_decouple.py              # linear vs saturating beam-set ranking      -> decouple.json
 python make_figs.py                  # figures, tables, paper/numbers.json
 python build_paper.py                # fills paper/main.tex.in from the numbers and compiles paper/main.pdf
+# needs ieeeaccess.cls, IEEEtran.cls and images/ (IEEE Access template, not redistributed here): put them in $IEEEACCESS_DIR (default /tmp/acc) or in paper/
 ```
 All numbers quoted in the manuscript are generated from `results_S2.jsonl`, `validation.json` and `decouple.json`; nothing is typed by hand.
 
