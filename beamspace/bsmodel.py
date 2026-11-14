@@ -62,8 +62,11 @@ class Scene:
         self.Gb = self.G @ self.U            # N x M beamspace BS->RIS channel
 
 
-def zf(Heq, Pbs):
-    W = Heq.conj().T @ np.linalg.inv(Heq @ Heq.conj().T)
+def zf(Heq, Pbs, alpha=0.0):
+    """ZF (alpha=0) or regularised ZF precoder; alpha is relative to the mean eigenvalue of Heq Heq^H."""
+    H2 = Heq @ Heq.conj().T
+    H2 = H2 + alpha * np.trace(H2).real / H2.shape[0] * np.eye(H2.shape[0])
+    W = Heq.conj().T @ np.linalg.inv(H2)
     return W * np.sqrt(Pbs) / np.linalg.norm(W)
 
 
@@ -92,7 +95,7 @@ def evaluate(sc, S, Wb, ph, p, A):
     return sig / (intf + noise), Pout.sum()
 
 
-def design(sc, S, A, aware=True, pgrid=None, ph=None, iters=2):
+def design(sc, S, A, aware=True, pgrid=None, ph=None, iters=2, alphas=(0.0, 0.1, 0.3, 1.0)):
     """Gain p (uniform) and ZF precoder for beam set S.
     aware=True : p chosen on the compression-aware rate subject to the true RIS power budget.
     aware=False: p chosen by the LINEAR power budget (what a compression-blind design does)."""
@@ -100,12 +103,12 @@ def design(sc, S, A, aware=True, pgrid=None, ph=None, iters=2):
     if ph is None: ph = phases(sc, S)
     Gb = sc.Gb[:, S]
     if pgrid is None: pgrid = np.logspace(0, 2, 16)
-    def build(p, Ae):
-        W = zf((sc.f * (p * ph)) @ Gb, sc.Pbs)
+    def build(p, Ae, al=0.0):
+        W = zf((sc.f * (p * ph)) @ Gb, sc.Pbs, al)
         for _ in range(iters):
             Pu = (np.abs(Gb @ W) ** 2).sum(1) + sc.sv2
             kap, _, _ = rapp_bussgang(Pu, p, Ae)
-            W = zf((sc.f * (kap * ph)) @ Gb, sc.Pbs)
+            W = zf((sc.f * (kap * ph)) @ Gb, sc.Pbs, al)
         return W
     if not aware:
         best = None
@@ -117,11 +120,12 @@ def design(sc, S, A, aware=True, pgrid=None, ph=None, iters=2):
         p, W = best
         return dict(S=S, ph=ph, p=p, W=W)
     best, br = None, -1
-    for p in pgrid:
-        W = build(p, A)
-        s, Pr = evaluate(sc, S, W, ph, p, A)
-        r = np.log2(1 + s).sum()
-        if Pr <= sc.Pris and r > br: best, br = (p, W), r
+    for al in alphas:
+        for p in pgrid:
+            W = build(p, A, al)
+            s, Pr = evaluate(sc, S, W, ph, p, A)
+            r = np.log2(1 + s).sum()
+            if Pr <= sc.Pris and r > br: best, br = (p, W), r
     if best is None: best = (1.0, build(1.0, A))
     p, W = best
     return dict(S=S, ph=ph, p=p, W=W)
