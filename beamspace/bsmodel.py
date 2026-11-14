@@ -177,3 +177,52 @@ def select_greedy(sc, Ns, A, aware=True, cand=None, pgrid=None):
         sc_ = [score(S + [b]) for b in pool]
         j = int(np.argmax(sc_)); S.append(pool.pop(j))
     return np.sort(S)
+
+
+# ---------------------------------------------------------------- RIS phase refinement (analytic gradient)
+def refine_phases(sc, S, W, p, A, ph, steps=80, lr=0.05, fair=0.0):
+    """Adam ascent on the aware sum-rate over the RIS phases with the precoder W fixed.
+    With W fixed, Pu_n (hence kappa_n, sd2_n) does not depend on the phases, so
+    SINR_k = |c_kk^T ph|^2 / (sum_{j!=k} |c_kj^T ph|^2 + n_k),  c_kj[n] = f_kn kappa_n (Gb W)_nj."""
+    Gb = sc.Gb[:, S]; X = Gb @ W
+    Pu = (np.abs(X) ** 2).sum(1) + sc.sv2
+    kap, sd2, _ = rapp_bussgang(Pu, p, A)
+    nk = (np.abs(sc.f) ** 2) @ (kap**2 * sc.sv2 + sd2) + sc.s2                    # K
+    C = sc.f[:, None, :] * (kap[:, None] * X).T[None, :, :]                       # K x K x N  (k, j, n)
+    th = np.angle(ph).copy(); m = np.zeros_like(th); v = np.zeros_like(th)
+    best, bth = -1, th.copy(); K = sc.K
+    for t in range(1, steps + 1):
+        e = np.exp(1j * th)
+        Z = C @ e                                                                  # K x K
+        P = np.abs(Z) ** 2
+        tot = P.sum(1) + nk; intf = tot - np.diag(P)
+        rk = np.log2(tot) - np.log2(intf)
+        R = rk.sum() if fair <= 0 else np.log2(rk + fair).sum()           # sum-rate or proportional-fair objective
+        if R > best: best, bth = R, th.copy()
+        wk = np.ones(K) if fair <= 0 else 1 / (rk + fair)
+        # d P_kj / d th_n = -2 Im(conj(Z_kj) C_kjn e_n)
+        dP = -2 * np.imag(np.conj(Z)[:, :, None] * C * e[None, None, :])           # K x K x N
+        wtot = wk / tot; wint = wk / intf
+        offd = 1 - np.eye(K)
+        g = (wtot[:, None, None] * dP).sum((0, 1)) - ((wint[:, None] * offd)[:, :, None] * dP).sum((0, 1))
+        g = g / np.log(2)
+        m = 0.9 * m + 0.1 * g; v = 0.999 * v + 0.001 * g**2
+        th = th + lr * (m / (1 - 0.9**t)) / (np.sqrt(v / (1 - 0.999**t)) + 1e-12)
+    return np.exp(1j * bth), best
+
+
+def _obj(sc, d, A, fair):
+    s, _ = evaluate(sc, d['S'], d['W'], d['ph'], d['p'], A); r = np.log2(1 + s)
+    return r.sum() if fair <= 0 else np.log2(r + fair).sum()
+
+
+def design_refined(sc, S, A, outer=4, steps=60, pgrid=None, fair=0.0):
+    d = design(sc, S, A, aware=True, pgrid=pgrid)
+    best = _obj(sc, d, A, fair); bd = d
+    for _ in range(outer):
+        ph, _ = refine_phases(sc, d['S'], d['W'], d['p'], A, d['ph'], steps=steps, fair=fair)
+        d = design(sc, S, A, aware=True, ph=ph, pgrid=pgrid)
+        r = _obj(sc, d, A, fair)
+        if r > best + 1e-6: best, bd = r, d
+        else: break
+    return bd
